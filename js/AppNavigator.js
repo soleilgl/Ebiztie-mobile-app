@@ -35,6 +35,7 @@ import ChatDetail from './components/chatdetail';
 import ActivityDetail from './components/activitydetail';
 import Search from './components/partner_search';
 import CustomDrawerContentComponent from './components/partner_drawer/index';
+import ActivateUser from './components/activation';
 
 const deviceHeight = Dimensions.get('window').height;
 const deviceWidth = Dimensions.get('window').width;
@@ -194,6 +195,9 @@ const HomeStack = StackNavigator({
   Signup: {
     screen: Signup,
   },
+  ActivateUser: {
+    screen: ActivateUser,
+  },
   PartnershipStack: {
     screen: PartnershipStack,
   },
@@ -239,5 +243,6 @@ const HomeStack = StackNavigator({
 },
   { headerMode: 'screen' },
 );
+
 
 export default HomeStack
