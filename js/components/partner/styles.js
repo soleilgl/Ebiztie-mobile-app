@@ -8,7 +8,7 @@ const deviceWidth = Dimensions.get('window').width;
 
 export default {
   container: {
-    backgroundColor: '#FFF',
+    backgroundColor: '#eaeff2',
   },
   header: {
     backgroundColor: '#218BC8',
@@ -27,8 +27,5 @@ export default {
   },
   partnerbox: {
     flex: 8,
-    // padding: 1,
-    // marginLeft: 5,
-    // marginRight: 5,
   },
 };
