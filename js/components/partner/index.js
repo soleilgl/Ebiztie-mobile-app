@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Platform } from 'react';
 import { Container, View, Header, Card, Title, Button, Icon, Thumbnail, Left, Right, Footer, FooterTab } from 'native-base';
 import { ScrollView, TouchableOpacity, Dimensions } from 'react-native';
 import styles from './styles';
@@ -25,7 +25,7 @@ class Partner extends Component {
     },
     headerTitleStyle: {
       fontSize: 15,
-      marginLeft: 100,
+      marginLeft: 90,
     },
     headerLeft: <Button transparent onPress={() => navigation.navigate('DrawerOpen')}><Icon name="ios-options" style={{ color: 'white', marginRight: 10 }} /></Button>,
     headerRight: <Button transparent onPress={() => navigation.navigate('Search')}><Icon name="ios-search" style={{ color: 'white', marginRight: 10 }} /></Button>,

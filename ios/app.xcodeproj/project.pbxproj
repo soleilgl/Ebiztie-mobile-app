@@ -5,6 +5,7 @@
 	};
 	objectVersion = 46;
 	objects = {
+
 /* Begin PBXBuildFile section */
 		00C302E51ABCBA2D00DB3ED1 /* libRCTActionSheet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302AC1ABCB8CE00DB3ED1 /* libRCTActionSheet.a */; };
 		00C302E71ABCBA2D00DB3ED1 /* libRCTGeolocation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302BA1ABCB90400DB3ED1 /* libRCTGeolocation.a */; };
@@ -46,6 +47,7 @@
 		3D2EBF2BBDD4415988FC6FB5 /* libCodePush.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E2AE049D3194299A84BE739 /* libCodePush.a */; };
 		44E05FC6BB9648E484E797A0 /* Rubik-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 06A2A640353C458D9B399B88 /* Rubik-Light.ttf */; };
 		48719994721249BABE891BE3 /* Entypo.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A96DB3AF41D64DED8B6935F5 /* Entypo.ttf */; };
+		4DC3D950E7744D58A9846268 /* MaterialCommunityIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BF6BECE315B14204B8D16151 /* MaterialCommunityIcons.ttf */; };
 		5060DF33D020421F8416B13D /* Skia.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D8851E6E860A4839A134FF00 /* Skia.ttf */; };
 		535424279658452EB202C1FA /* Rubik-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2BB814463F90464A8A71A75F /* Rubik-Italic.ttf */; };
 		585DBFA555C04EA78E9B4B4A /* Comic Sans MS.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7714597E6CDF4C6A8D5A9DEE /* Comic Sans MS.ttf */; };
@@ -93,7 +95,6 @@
 		F0E7AC0A1EB5487B901B5AFF /* libRNVectorIcons.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 17E2CD48D2614CC188008416 /* libRNVectorIcons.a */; };
 		F440F87C074E4711BD1C3B52 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = D5386A183D6C496B9061AB2C /* libz.tbd */; };
 		F5AC1E78860A4395A8FA7BCB /* EvilIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6EE076BC2046417FBFF51A8B /* EvilIcons.ttf */; };
-		4DC3D950E7744D58A9846268 /* MaterialCommunityIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BF6BECE315B14204B8D16151 /* MaterialCommunityIcons.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -364,6 +365,7 @@
 		AEEA85ABD2B74F6ABE16B943 /* Times New Roman.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Times New Roman.ttf"; path = "../node_modules/native-base/Fonts/Times New Roman.ttf"; sourceTree = "<group>"; };
 		B2490786C4294E1EB087065F /* Foundation.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Foundation.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Foundation.ttf"; sourceTree = "<group>"; };
 		B56FBB4EAAEC4942B1F992AB /* Rubik-LightItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Rubik-LightItalic.ttf"; path = "../node_modules/native-base/Fonts/Rubik-LightItalic.ttf"; sourceTree = "<group>"; };
+		BF6BECE315B14204B8D16151 /* MaterialCommunityIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = MaterialCommunityIcons.ttf; path = "../node_modules/native-base/Fonts/MaterialCommunityIcons.ttf"; sourceTree = "<group>"; };
 		C0EAE224FD0E409D9AD90920 /* FontAwesome.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome.ttf; path = "../node_modules/native-base/Fonts/FontAwesome.ttf"; sourceTree = "<group>"; };
 		C2D2FC4BAFDA4E4F9C383FA9 /* Zocial.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Zocial.ttf; path = "../node_modules/native-base/Fonts/Zocial.ttf"; sourceTree = "<group>"; };
 		C93857ECDE404CE2B416839D /* Courier New.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Courier New.ttf"; path = "../node_modules/native-base/Fonts/Courier New.ttf"; sourceTree = "<group>"; };
@@ -387,7 +389,6 @@
 		EE9EB5441EE7C35800627E6A /* SimpleLineIcons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = SimpleLineIcons.ttf; sourceTree = "<group>"; };
 		EE9EB5451EE7C35800627E6A /* Zocial.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Zocial.ttf; sourceTree = "<group>"; };
 		FBE4847349D74DB4ABF32205 /* Rubik-Medium.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Rubik-Medium.ttf"; path = "../node_modules/native-base/Fonts/Rubik-Medium.ttf"; sourceTree = "<group>"; };
-		BF6BECE315B14204B8D16151 /* MaterialCommunityIcons.ttf */ = {isa = PBXFileReference; name = "MaterialCommunityIcons.ttf"; path = "../node_modules/native-base/Fonts/MaterialCommunityIcons.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -806,6 +807,9 @@
 					00E356ED1AD99517003FC87E = {
 						CreatedOnToolsVersion = 6.2;
 						TestTargetID = 13B07F861A680F5B00A75B9A;
+					};
+					13B07F861A680F5B00A75B9A = {
+						DevelopmentTeam = RVT25WEC9L;
 					};
 					2D02E47A1E0B4A5D006451C7 = {
 						CreatedOnToolsVersion = 8.2.1;
@@ -1332,6 +1336,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = NO;
+				DEVELOPMENT_TEAM = RVT25WEC9L;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/react-native-code-push/ios/CodePush/**",
@@ -1344,6 +1349,7 @@
 					"-ObjC",
 					"-lc++",
 				);
+				PRODUCT_BUNDLE_IDENTIFIER = Ebiztie.com;
 				PRODUCT_NAME = app;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -1354,6 +1360,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = RVT25WEC9L;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/react-native-code-push/ios/CodePush/**",
@@ -1366,6 +1373,7 @@
 					"-ObjC",
 					"-lc++",
 				);
+				PRODUCT_BUNDLE_IDENTIFIER = Ebiztie.com;
 				PRODUCT_NAME = app;
 				VERSIONING_SYSTEM = "apple-generic";
 			};

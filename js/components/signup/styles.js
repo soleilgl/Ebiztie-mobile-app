@@ -9,9 +9,12 @@ export default {
   container: {
     backgroundColor: '#FFF',
   },
+    contentbox: {
+        marginRight: (Platform.OS === 'android') ? 0 : 5,
+    },
   logo:{
     position: 'absolute',
-    top: 10,
+      top: (Platform.OS === 'android') ? 10 : 6,
     alignSelf: 'center',
     width: 120,
     height: 40,
@@ -21,6 +24,17 @@ export default {
     width: 200,
     alignSelf: 'center',
     marginTop: 20,
-    marginBottom: 20
+    marginBottom: 20,
   },
+    messagebox: {
+        top:0,
+    },
+    messagebody: {
+        color: 'red',
+        alignSelf:'center',
+    },
+    introbox:{
+     marginLeft:10,
+        marginTop: 10,
+    },
 };

@@ -53,13 +53,10 @@ class Signin extends Component {
           </View>
 
           <View style={styles.wording}>
-            <Text>SINGN IN HERE</Text>
+            <Text style={{color: '#218BC8'}}>其他登陆方式</Text>
           </View>
 
           <View style={styles.otherloginmethodsbox}>
-            <TouchableOpacity>
-              <Thumbnail size={80} source={wechat} style={styles.icons} />
-            </TouchableOpacity>
             <TouchableOpacity>
               <Thumbnail size={80} source={facebook} style={styles.icons} />
             </TouchableOpacity>
@@ -74,11 +71,8 @@ class Signin extends Component {
             </TouchableOpacity>
           </View>
 
-          <View>
-            <Text style={{ alignSelf:'center' }}>{}</Text>
-          </View>
           <View style={styles.buttonbox} >
-            <Button block style={styles.signinbtn} onPress={() => this.props.navigation.dispatch(signin())}
+            <Button block style={styles.signinbtn} onPress={() => this.props.dispatch(signin())}
               title="Go to Partnership page" >
 {/* this.props.navigation.dispatch(NavigationActions.navigate({ routeName: 'PartnershipStack' })) */}
               <Text style={{ fontSize: 15 }} >登陆</Text>
@@ -88,6 +82,9 @@ class Signin extends Component {
               <Text style={{ color: 'black', fontSize: 15 }} >注册</Text>
             </Button>
           </View>
+          <View style={styles.messagebox}>
+          <Text style={styles.messagebody}>{this.props.message}</Text>
+          </View>
         </Content>
       </Container>
     );
@@ -96,7 +93,7 @@ class Signin extends Component {
 const mapStateToProps = (state) => ({
   username: state.username,
   password: state.password,
-  signin: state.signin,
+  message: state.signin,
 });
 
 export default connect(mapStateToProps)(Signin);
