@@ -36,6 +36,7 @@ import ActivityDetail from './components/activitydetail';
 import Search from './components/partner_search';
 import CustomDrawerContentComponent from './components/partner_drawer/index';
 import ActivateUser from './components/activation';
+import Agreement from './components/agreement';
 
 const deviceHeight = Dimensions.get('window').height;
 const deviceWidth = Dimensions.get('window').width;
@@ -51,7 +52,8 @@ export const ChangePartnership = TabNavigator({
     screen: PartnerProject,
   },
 },
-  { tabBarOptions: {
+  { tabBarPosition:'top',
+    tabBarOptions: {
     pressColor: '#f5fffa',
     activeBackgroundColor: '#ffffff',
     inactiveBackgroundColor: '#ffffff',
@@ -240,6 +242,9 @@ const HomeStack = StackNavigator({
   Search: {
     screen: Search,
   },
+    Agreement: {
+    screen: Agreement,
+    },
 },
   { headerMode: 'screen' },
 );

@@ -11,7 +11,7 @@ export default {
   },
   logo:{
     position: 'absolute',
-    top: 10,
+      top: (Platform.OS === 'android') ? 10 : 6,
     alignSelf: 'center',
     width: 120,
     height: 40,
@@ -41,7 +41,7 @@ export default {
       marginRight: 5
   },
   wording:{
-    marginLeft:20
+    marginLeft:50
   },
   signinbtn:{
     backgroundColor: '#218BC8',
@@ -52,6 +52,13 @@ export default {
     backgroundColor: 'white',
     width: 100,
     borderWidth: 1,
-    borderColor: '#b0e0e6'
+    borderColor: '#b0e0e6',
   },
+    messagebox: {
+        top:(Platform.OS === 'android') ? 1 : 50,
+    },
+    messagebody: {
+      color: 'red',
+        alignSelf:'center',
+    },
 };
