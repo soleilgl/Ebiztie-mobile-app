@@ -7,7 +7,7 @@ import { connect } from 'react-redux';
 import { NavigationActions } from 'react-navigation';
 
 import styles from './styles';
-import { usernameInput, passwordInput, signin } from '../../actions';
+import { usernameInput, passwordInput, signin, LinkedinSignIn } from '../../actions';
 
 const logo = require('../../../img/Ebiztie.jpg');
 const wechat = require('../../../img/wechatimg.jpg');
@@ -24,12 +24,16 @@ class Signin extends Component {
     super(props);
     this.handleUernameInput = this.handleUernameInput.bind(this);
     this.handlePasswordInput = this.handlePasswordInput.bind(this);
+    this.handleLinkedinSignIn = this.handleLinkedinSignIn.bind(this);
   }
   handleUernameInput(event) {
     this.props.dispatch(usernameInput(event.nativeEvent.text));
   }
   handlePasswordInput(event) {
     this.props.dispatch(passwordInput(event.nativeEvent.text));
+  }
+  handleLinkedinSignIn(){
+  this.props.dispatch(LinkedinSignIn());
   }
   render() {
     return (
@@ -60,7 +64,7 @@ class Signin extends Component {
             <TouchableOpacity>
               <Thumbnail size={80} source={facebook} style={styles.icons} />
             </TouchableOpacity>
-            <TouchableOpacity>
+            <TouchableOpacity onPress={this.handleLinkedinSignIn}>
               <Thumbnail size={80} source={linkedin} style={styles.icons} />
             </TouchableOpacity>
             <TouchableOpacity>
@@ -72,18 +76,18 @@ class Signin extends Component {
           </View>
 
           <View style={styles.buttonbox} >
-            <Button block style={styles.signinbtn} onPress={() => this.props.dispatch(signin())}
-              title="Go to Partnership page" >
-{/* this.props.navigation.dispatch(NavigationActions.navigate({ routeName: 'PartnershipStack' })) */}
+            <Button block style={styles.signinbtn} onPress={() => this.props.dispatch(signin())} title="Go to Partnership page" >
               <Text style={{ fontSize: 15 }} >登陆</Text>
             </Button>
-            <Button block style={styles.signupbtn} onPress={() => this.props.navigation.navigate('Signup', {})}
-              title="Go to Signup page" >
+            <Button block style={styles.signupbtn} onPress={() => this.props.navigation.navigate('Signup', {})} title="Go to Signup page" >
               <Text style={{ color: 'black', fontSize: 15 }} >注册</Text>
             </Button>
           </View>
           <View style={styles.messagebox}>
           <Text style={styles.messagebody}>{this.props.message}</Text>
+          </View>
+          <View>
+          <Text style={styles.findpwbtn}>忘记密码？</Text>
           </View>
         </Content>
       </Container>
