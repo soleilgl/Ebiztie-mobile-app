@@ -23,25 +23,33 @@ export const CLEAN_ERROR_MESSAGE = 'CLEAN_ERROR_MESSAGE';
 export const SIGNUP_PASSWORD_PATTERN_FAILURE = 'SIGNUP_PASSWORD_PATTERN_FAILURE';
 export const RESEND_ACTIVATION_EMAIL = 'RESEND_ACTIVATION_EMAIL';
 export const REGISTER_AGREEMENT = 'REGISTER_AGREEMENT';
+export const CHANGE_AVATAR = 'CHANGE_AVATAR';
 
+// use when user input ID to log in
 export const usernameInput = (username) => {
   return {
     type: USERNAME_INPUT,
     username: username,
   };
 };
+
+// use when user input PW to log in
 export const passwordInput = (password) => {
   return {
     type: PASSWORD_INPUT,
     password: password,
   };
 };
+
+// use when user log in successful
 export const signinSuccess = (message) => {
   return {
     type: SIGNIN_SUCCESS,
     message: message,
   }
 };
+
+// use when user log in failed
 export const signinFailure = (message) => {
   return {
     type: SIGNIN_FAILURE,
@@ -53,7 +61,7 @@ export const activateUser = () => {
     type: ACTIVATE_USER,
   }
 };
-// http://54.219.171.129
+// when user click signin button, this handles an async action. first to collect sign-in info second to talk to backend
 export const signin = () => {
   return (dispatch, getState) => {
     const body = {
@@ -85,6 +93,7 @@ export const signin = () => {
   }
 };
 
+// use to collect user sign-up info
 export const nameRegister = (realname) => {
   return {
     type: NAME_REGISTER,
@@ -159,35 +168,45 @@ export const introductionRegister = (introduction) => {
     introduction: introduction,
   }
 };
+
+//when sign-up successful
 export const signupSuccess = (message) => {
     return {
         type: SIGNUP_SUCCESS,
         message: message,
     }
 };
+//when sign-up failed
 export const signupPasswordFailure = (message) => {
     return {
         type: SIGNUPPASSWORD_FAILURE,
         message: message,
     }
 };
+//when user name is already existed, this action will be called
 export const signupUsernameFailure = (message) => {
     return {
         type: SIGNUPUSERNAME_FAILURE,
         message: message,
     }
 };
+
+//when there is missing items need to be filled, this action will be called
 export const signupMissingItems = (message) => {
     return {
         type: SIGNUP_MISSINGITEMS,
         message: message,
     }
 };
+
+//this action will clean up all Error Message displayed on the signin and signup UI
 export const cleanErrorMessage = () => {
     return {
         type:CLEAN_ERROR_MESSAGE,
     }
 };
+
+//when the password that user input doesn;t match the requirement, this action will be called
 export const signupPasswordPatternFailure =(message) => {
     return {
         type: SIGNUP_PASSWORD_PATTERN_FAILURE,
@@ -195,6 +214,8 @@ export const signupPasswordPatternFailure =(message) => {
     }
 };
 
+
+// when user click signup button, this handles an async action. first to collect sign-up info second to talk to backend
 export const signup = () => {
     return (dispatch, getState) => {
         const pattern=/^(?=.*[A-Z])(?=.*\d)[a-zA-Z\d~!@#$%^&*()]{4,}$/;
@@ -220,7 +241,7 @@ export const signup = () => {
             dispatch(signupMissingItems("所有为必填相"))
         }else{
             dispatch(cleanErrorMessage(''))
-            return fetch ('http://54.219.171.129/register/mobileapp', { method: 'post',
+            return fetch ('http://51.219.171.129/register/mobileapp', { method: 'post',
                     body: JSON.stringify(body),
                     headers: {
                         'Content-Type': 'application/json',
@@ -243,9 +264,124 @@ export const signup = () => {
         }
     }
 };
+
+//durning signup process, used when user needs to review sign-up agreement, it will call navigation reducer to display the UI
 export const registerAgreement = () => {
     return {
         type: REGISTER_AGREEMENT
+    }
+}
+
+//called to change pic on UI
+export const changeAvatar = (data) => {
+    console.log("data is" + data)
+    //noinspection JSAnnotator
+    return {
+        type: CHANGE_AVATAR,
+        avatarsource : data.url
+    }
+}
+const saveAvartarURL = (url) => {
+    return (dispatch, getState) => {
+         fetch (`http://54.219.171.129/api/private/profile/profileIcon?purpose=profile-logo&url=${url}`, {
+            method: 'put',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            }
+        }).then(
+            (res) => {
+            return res.json();
+            //awsUrl={url:https://userpictureebiztie.s3-us-west-1.amazonaws.com/7152d1028806e3780b3f996b6076950d.jpg?AWSAccessKeyId=AKIAJVA3NAQYBKGDIZAA&Expires=1500055895&Signature=zOaxkVU78hSZjbpD7lNOueF%2FcCU%3D}
+    },
+        (error) => {
+            dispatch(signupFailure('连接服务器失败，请稍后重试'));
+        }
+    ).then((data) => {
+            dispatch (changeAvatar(data));
+    })
+    }
+}
+
+//when user needs to upload image on profile page, this will call a asyc function,
+// first, select pic from phone album or use camera to take a new picture, an URI will be generated by Event handler(handleImageUpload)
+// second, send this pic to AWS and get an URL(...jpg) back by a post call
+//third, use the URL from AWS to get the awsurl(https://...). Dao will figure out shall create a new filename or replace the old one by checking user ID
+//meantime,the awsurl will be returned to the front as image source to display new picture
+export const uploadImageRegister = (source) => {
+    return (dispatch, getState) => {
+        const file = {
+            uri: source.uri.uri,
+            name: source.fileName,
+            type: 'image/jpg',
+        }
+
+        const body = new FormData();
+        body.append('file', file);
+        const config = {
+            method: 'post',
+            headers: {
+                'Accept': 'application/json',
+                //'Content-Type': 'multipart/form-data;',file upload content-type
+                //'Content-Type': 'application/json',can not use for android bug
+            },
+            body: body,
+        }
+        fetch ('http://54.219.171.129/api/private/uploadFiles/profile', config).then(
+                (res) => {
+                return res.json();
+    },
+        (error) => {
+            dispatch(signupFailure('连接服务器失败，请稍后重试'));
+        }
+    ).then((data) => {
+            console.log("data is" + data)
+        console.log("url is" + data.url)
+            dispatch(saveAvartarURL(data.url));
+            //data is an object {url:e888d480170a154137cf02e57a8347f0.jpg}
+        })
+    }
+}
+
+export const LinkedinSignIn = () => {
+    return (dispatch, getState) => {
+      fetch ('http://localhost:5000/login/linkedin', { method: 'get',
+          body: undefined,
+          headers: {
+             'Content-Type': 'application/json',
+             'Accept': 'application/json'
+          }
+      })
+        fetch ('http://localhost:5000/login/linkedin/return', { method: 'get',
+              body: undefined,
+              headers: {
+                 'Content-Type': 'application/json',
+                'Accept': 'application/json'
+              }
+          })
+    }
+}
+
+export const getProfileImage = () => {
+    return (dispatch, getState) => {
+        fetch('http://54.219.171.129/api/private/profile/pictures',{
+            method: 'get',
+            headers: {
+                'Accept': 'application/json'
+            }
+        }).then(
+            (res) => {
+            return res.json();
+    },
+        (error) => {
+            dispatch(signupFailure('连接服务器失败，请稍后重试'));
+        }
+
+    ).then((imagedata) => {
+            const profileLogoArray = imagedata["profile-logo"];
+            dispatch (changeAvatar(profileLogoArray [0]));
+    })
+
     }
 }
 

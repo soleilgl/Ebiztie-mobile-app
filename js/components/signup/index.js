@@ -1,19 +1,29 @@
 import React, { Component } from 'react';
-import { TouchableOpacity, View, Image, Platform } from 'react-native';
+import { TouchableOpacity, View, Image, Platform, Dimensions } from 'react-native';
 import { Container, Left, Right, Header, Content, Body, Button, Icon, List, ListItem, InputGroup, Input, Picker, Text, Thumbnail, Textarea, CheckBox } from 'native-base';
 import { connect } from 'react-redux';
 import { NavigationActions } from 'react-navigation';
+import ImagePicker from 'react-native-image-picker';
+
 import styles from './styles';
 
-import { nameRegister, nicknameRegister, emailRegister, password1Register, password2Register, countryRegister, genderRegister, ageRegister, roleRegister, situationRegister, visitReasonRegister, introductionRegister, signup, registerAgreement} from '../../actions';
+import { nameRegister, nicknameRegister, emailRegister, password1Register, password2Register, countryRegister, genderRegister, ageRegister, roleRegister, situationRegister, visitReasonRegister, introductionRegister, signup, registerAgreement, uploadImageRegister} from '../../actions';
 
 const Item = Picker.Item;
-const userphoto = require('../../../img/user-pic.png');
 const logo = require('../../../img/Ebiztie.jpg');
+const deviceHeight = Dimensions.get('window').height;
 
 class Signup extends Component {
   static navigationOptions = {
-    header: null
+       title: '注册会员',
+      headerTintColor: '#ffffff',
+      headerStyle: {
+          backgroundColor: '#218BC8',
+          height:deviceHeight / 15,
+      },
+      headerTitleStyle:{
+          fontSize:15
+      }
   }
     constructor(props) {
         super(props);
@@ -70,20 +80,10 @@ class Signup extends Component {
     handleRegisterAgreement(){
       this.props.dispatch(registerAgreement())
     }
-
   render() {
     return (
       <Container style={styles.container}>
-        <Header style={{ backgroundColor: '#FFF' }} >
-          <View>
-            <Image source={logo} style={styles.logo} />
-          </View>
-        </Header>
-
         <Content style={styles.contentbox}>
-          <TouchableOpacity>
-            <Thumbnail size={80} source={userphoto} style={{ alignSelf: 'center', marginTop: 20, marginBottom: 10 }} />
-          </TouchableOpacity>
           <List>
             <ListItem>
               <InputGroup>

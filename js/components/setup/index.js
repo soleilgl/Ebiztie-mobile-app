@@ -1,12 +1,15 @@
 import React, { Component } from 'react';
 import { Container, Content, Header, Title, Card, CardItem, Button, Icon, Text, Footer, FooterTab, List, ListItem,Thumbnail } from 'native-base';
 import { View, ScrollView, Dimensions, TouchableOpacity } from 'react-native';
+import { connect } from 'react-redux';
+import ImagePicker from 'react-native-image-picker';
 import styles from './styles';
 
 import { Home } from '../../AppNavigator';
+import { uploadImageRegister, getProfileImage } from '../../actions';
+
 
 const deviceHeight = Dimensions.get('window').height;
-const userphoto = require('../../../img/user-pic.png');
 
 class Setup extends Component {
   static navigationOptions = {
@@ -20,12 +23,50 @@ class Setup extends Component {
       fontSize:15
     }
   };
+    constructor(props) {
+        super(props);
+        this.handleImageUpload =  this.handleImageUpload.bind(this);
+    }
+
+    componentWillMount() {
+      this.props.dispatch(getProfileImage())
+}
+    handleImageUpload(){
+        const options = {
+            //title: '选择头像',
+            storageOptions: {
+                skipBackup: false,
+            }
+        };
+        ImagePicker.showImagePicker(options, (response) => {
+            console.log('Response = ', response);
+
+        if (response.didCancel) {
+            console.log('User cancelled image picker');
+        }
+        else if (response.error) {
+            console.log('ImagePicker Error: ', response.error);
+        }
+        else if (response.customButton) {
+            console.log('User tapped custom button: ', response.customButton);
+        }
+        else {
+            let source = { uri: {uri: response.uri}, fileName:response.fileName};
+            // let source = { uri: response.uri};
+            // You can also display the image using data:
+            // let source = { uri: 'data:image/jpeg;base64,' + response.data };
+            // console.log('source is' + JSON.stringify(source))
+            this.props.dispatch(uploadImageRegister(source))
+        }
+    });
+    }
   render() {
+      const avartarSource = this.props.avatarSource;
     return (
       <Container style={styles.container}>
         <View style={styles.change_img}>
-          <TouchableOpacity>
-            <Thumbnail size={80} source={userphoto} style={{ alignSelf: 'center', marginTop: 20, marginBottom: 10 }} />
+          <TouchableOpacity onPress={this.handleImageUpload}>
+            <Thumbnail size={80} source={{uri: this.props.avatarSource}} style={{ alignSelf: 'center', marginTop: 20, marginBottom: 10 }} />
           </TouchableOpacity>
           <Text style={{fontSize:10, alignSelf:'center'}}>点击更换头像</Text>
         </View>
@@ -125,5 +166,7 @@ class Setup extends Component {
     );
   }
 }
-
-export default Setup;
+const mapStateToProps = (state) => ({
+    avatarSource: state.avatarSource,
+})
+export default connect(mapStateToProps) (Setup);

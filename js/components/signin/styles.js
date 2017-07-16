@@ -61,4 +61,8 @@ export default {
       color: 'red',
         alignSelf:'center',
     },
+    findpwbtn: {
+        color: '#218BC8',
+        alignSelf:'center',
+    },
 };
