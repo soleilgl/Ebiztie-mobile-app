@@ -1,6 +1,6 @@
-import React, { Component, Platform } from 'react';
+import React, { Component, } from 'react';
 import { Container, View, Header, Card, Title, Button, Icon, Thumbnail, Left, Right, Footer, FooterTab } from 'native-base';
-import { ScrollView, TouchableOpacity, Dimensions } from 'react-native';
+import { ScrollView, TouchableOpacity, Dimensions, Platform } from 'react-native';
 import styles from './styles';
 
 import { ChangePartnership } from '../../AppNavigator';
@@ -17,7 +17,7 @@ const deviceWidth = Dimensions.get('window').width;
 
 class Partner extends Component {
   static navigationOptions = ({ navigation }) => ({
-    title: '首页 + 推荐',
+    title: '首页',
     headerTintColor: '#ffffff',
     headerStyle: {
       backgroundColor: '#218BC8',
@@ -25,16 +25,17 @@ class Partner extends Component {
     },
     headerTitleStyle: {
       fontSize: 15,
-      marginLeft: 90,
+      marginLeft: (Platform.OS === 'android') ? 150 : 40,
     },
-    headerLeft: <Button transparent onPress={() => navigation.navigate('DrawerOpen')}><Icon name="ios-options" style={{ color: 'white', marginRight: 10 }} /></Button>,
-    headerRight: <Button transparent onPress={() => navigation.navigate('Search')}><Icon name="ios-search" style={{ color: 'white', marginRight: 10 }} /></Button>,
-    drawerLabel: '首页',
+    headerLeft: <Button transparent onPress={() => navigation.navigate('DrawerOpen')}><Icon name="ios-options" style={styles.drawerIcon} /></Button>,
+    headerRight: <Button transparent onPress={() => navigation.navigate('Search')}><Icon name="ios-search" style={styles.searchIcon} /></Button>,
+    //drawerLabel: '首页',
     drawerIcon: <Icon name="ios-home" style={{ color: '#218BC8'}} />,
     drawerStyle: {
       backgroundColor: 'green',
     },
   });
+
   render() {
     return (
       <Container style={styles.container}>
@@ -47,7 +48,7 @@ class Partner extends Component {
             <Icon name="ios-search" style={{ color: 'white' }} onPress={() => this.props.navigation.navigate('Search')} />
           </Right>
         </Header> */}
-        <Card>
+    {/* <Card>
           <ScrollView style={styles.recommandationbox} horizontal={true}>
             <TouchableOpacity>
               <Thumbnail square size={80} source={winnerimg} style={styles.recommandationbox_img} />
@@ -80,7 +81,7 @@ class Partner extends Component {
               <Thumbnail square size={80} source={Kevin} style={styles.recommandationbox_img} />
             </TouchableOpacity>
           </ScrollView>
-        </Card>
+        </Card>*/}
         <View style={styles.partnerbox}>
           <ChangePartnership screenProps={{ rootNavigation: this.props.navigation }} />
         </View>

@@ -38,17 +38,20 @@ class Signin extends Component {
   render() {
     return (
       <Container style={styles.container}>
-        <Header style={{ backgroundColor: '#FFF' }} >
+      {/* <Header style={{ backgroundColor: '#FFF' }} >
           <View>
             <Image source={logo} style={styles.logo} />
           </View>
-        </Header>
+        </Header>*/}
 
         <Content>
+          <View style={styles.logobox}>
+          <Image source={logo} style={styles.logo} />
+          </View>
           <View style={styles.loginbox}>
             <InputGroup rounded style={{ marginBottom: 30 }}>
               <Icon name="md-person" style={{ color: '#0A69FE' }} />
-              <Input placeholder="用户名" type="text" ref="username" value={this.props.username} onChange={this.handleUernameInput} />
+              <Input placeholder="邮箱地址" type="text" ref="username" value={this.props.username} onChange={this.handleUernameInput} />
             </InputGroup>
             <InputGroup rounded>
               <Icon name="ios-unlock" style={{ color: '#0A69FE' }} />
@@ -56,10 +59,9 @@ class Signin extends Component {
             </InputGroup>
           </View>
 
-          <View style={styles.wording}>
+      {/* <View style={styles.wording}>
             <Text style={{color: '#218BC8'}}>其他登陆方式</Text>
           </View>
-
           <View style={styles.otherloginmethodsbox}>
             <TouchableOpacity>
               <Thumbnail size={80} source={facebook} style={styles.icons} />
@@ -73,7 +75,7 @@ class Signin extends Component {
             <TouchableOpacity>
               <Thumbnail size={80} source={tweeter} style={styles.icons} />
             </TouchableOpacity>
-          </View>
+          </View>*/}
 
           <View style={styles.buttonbox} >
             <Button block style={styles.signinbtn} onPress={() => this.props.dispatch(signin())} title="Go to Partnership page" >

@@ -61,11 +61,11 @@ export const ChangePartnership = TabNavigator({
     inactiveTintColor: 'grey',
     style: {
       backgroundColor: '#ffffff',
-      height: 30,
+      height:deviceHeight/18,
+      padding:(Platform.OS === 'android') ? 2 : 8
     },
     labelStyle: {
-      fontSize: 13,
-      marginTop: 0,
+      fontSize: 15,
     },
     // tabStyle: {
     //   borderWidth: 1,
