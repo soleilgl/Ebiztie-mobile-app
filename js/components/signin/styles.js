@@ -10,12 +10,15 @@ export default {
     backgroundColor: '#FFF',
   },
   logo:{
-    position: 'absolute',
-      top: (Platform.OS === 'android') ? 10 : 6,
+    // position: 'absolute',
+    //   marginTop: (Platform.OS === 'android') ? 20 : 16,
     alignSelf: 'center',
-    width: 120,
-    height: 40,
+    width: 180,
+    height: 60,
   },
+    logobox: {
+        marginTop: (Platform.OS === 'android') ? 100 : 80,
+    },
   text:{
     fontSize: 10,
   },

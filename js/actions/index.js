@@ -24,6 +24,11 @@ export const SIGNUP_PASSWORD_PATTERN_FAILURE = 'SIGNUP_PASSWORD_PATTERN_FAILURE'
 export const RESEND_ACTIVATION_EMAIL = 'RESEND_ACTIVATION_EMAIL';
 export const REGISTER_AGREEMENT = 'REGISTER_AGREEMENT';
 export const CHANGE_AVATAR = 'CHANGE_AVATAR';
+export const SAVE_ALL_PARTNERS_INFO = 'SAVE_ALL_PARTNERS_INFO';
+export const SAVE_ALL_BUSINESS_INFO = 'SAVE_ALL_BUSINESS_INFO';
+export const SAVE_ALL_PROJECTS_INFO = 'SAVE_ALL_PROJECTS_INFO';
+
+
 
 // use when user input ID to log in
 export const usernameInput = (username) => {
@@ -241,7 +246,7 @@ export const signup = () => {
             dispatch(signupMissingItems("所有为必填相"))
         }else{
             dispatch(cleanErrorMessage(''))
-            return fetch ('http://51.219.171.129/register/mobileapp', { method: 'post',
+            return fetch ('http://54.219.171.129/register/mobileapp', { method: 'post',
                     body: JSON.stringify(body),
                     headers: {
                         'Content-Type': 'application/json',
@@ -343,24 +348,24 @@ export const uploadImageRegister = (source) => {
     }
 }
 
-export const LinkedinSignIn = () => {
-    return (dispatch, getState) => {
-      fetch ('http://localhost:5000/login/linkedin', { method: 'get',
-          body: undefined,
-          headers: {
-             'Content-Type': 'application/json',
-             'Accept': 'application/json'
-          }
-      })
-        fetch ('http://localhost:5000/login/linkedin/return', { method: 'get',
-              body: undefined,
-              headers: {
-                 'Content-Type': 'application/json',
-                'Accept': 'application/json'
-              }
-          })
-    }
-}
+// export const LinkedinSignIn = () => {
+//     return (dispatch, getState) => {
+//       fetch ('http://localhost:5000/login/linkedin', { method: 'get',
+//           body: undefined,
+//           headers: {
+//              'Content-Type': 'application/json',
+//              'Accept': 'application/json'
+//           }
+//       })
+//         fetch ('http://localhost:5000/login/linkedin/return', { method: 'get',
+//               body: undefined,
+//               headers: {
+//                  'Content-Type': 'application/json',
+//                 'Accept': 'application/json'
+//               }
+//           })
+//     }
+// }
 
 export const getProfileImage = () => {
     return (dispatch, getState) => {
@@ -384,6 +389,88 @@ export const getProfileImage = () => {
 
     }
 }
+const saveAllPartnersInfo = (data) => {
+    return {
+        type: SAVE_ALL_PARTNERS_INFO,
+        allPartnersInfo: data
+    }
+}
+
+const saveAllBusinessInfo = (data) => {
+    return {
+        type: SAVE_ALL_BUSINESS_INFO,
+        allBusinessInfo: data
+    }
+}
+const saveAllProjectsInfo = (data) => {
+    return {
+        type: SAVE_ALL_PROJECTS_INFO,
+        allProjectsInfo: data
+    }
+}
+export const getAllPartnersInfo = () => {
+    return (dispatch, getState) => {
+    fetch('http://54.219.171.129/api/private/recommendation/newElites/mobileapp',{
+        method: 'get',
+        headers: {
+            'Accept': 'application/json'
+        }
+    }).then(
+        (res) => {
+        return res.json();
+    },
+        (error) => {
+            dispatch(signupFailure('连接服务器失败，请稍后重试'));
+        }
+
+    ).then((data) => {
+        dispatch (saveAllPartnersInfo(data));
+    })
+    }
+}
+
+export const getAllBusinessInfo = () => {
+    return (dispatch, getState) => {
+        fetch('http://54.219.171.129/api/private/recommendation/newBusinesses',{
+            method: 'get',
+            headers: {
+                'Accept': 'application/json'
+            }
+        }).then(
+            (res) => {
+            return res.json();
+    },
+        (error) => {
+            dispatch(signupFailure('连接服务器失败，请稍后重试'));
+        }
+
+    ).then((data) => {
+            dispatch (saveAllBusinessInfo(data));
+    })
+    }
+}
+
+export const getAllProjectsInfo = () => {
+    return (dispatch, getState) => {
+        fetch('http://54.219.171.129/api/private/recommendation/newProjects',{
+            method: 'get',
+            headers: {
+                'Accept': 'application/json'
+            }
+        }).then(
+            (res) => {
+            return res.json();
+    },
+        (error) => {
+            dispatch(signupFailure('连接服务器失败，请稍后重试'));
+        }
+
+    ).then((data) => {
+            dispatch (saveAllProjectsInfo(data));
+    })
+    }
+}
+
 
 // export const resendActivationEmail = () => {
 //     return (dispatch, getState) => {

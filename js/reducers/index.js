@@ -8,6 +8,9 @@ import signin from './signin';
 import signupErrorMessage from './signup';
 import signupInfo from './signup_info';
 import avatarSource from './avatar';
+import allPartnersInfo from './allPartners';
+import allBusinessInfo from './allBusiness';
+import allProjectsInfo from './allProjects';
 
 
 export default combineReducers({
@@ -18,4 +21,7 @@ export default combineReducers({
   signupInfo,
   signupErrorMessage,
   avatarSource,
+  allPartnersInfo,
+  allBusinessInfo,
+  allProjectsInfo,
 });
