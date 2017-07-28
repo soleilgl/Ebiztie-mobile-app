@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Card, List, ListItem, Text, Body, Thumbnail } from 'native-base';
-import { TouchableOpacity, ScrollView } from 'react-native';
+import { TouchableOpacity, ScrollView, FlatList } from 'react-native';
 import { connect } from 'react-redux';
 import { getAllProjectsInfo } from '../../actions';
 
@@ -23,31 +23,38 @@ componentWillMount() {
 handleProjectDetail() {
     this.props.dispatch(getProjectInfo());
 }
-  render() { // eslint-disable-line
+renderItem = ({ item }) => {
+    if (item.icon === '') {
+        item.icon = 'https://facebook.github.io/react/img/logo_og.png';
+    }
+
+    return (
+        <Card>
+        <ListItem>
+        <TouchableOpacity onPress={this.handleProjectDetail}>
+<Thumbnail square size={80} source={{uri: item.icon}} />
+</TouchableOpacity>
+    <Body>
+    <Text>{item.name}</Text>
+    <Text>分类：<Text note>{item.field}</Text></Text>
+    <Text numberOfLines={5} ellipsizeMode ={'tail'}>介绍：<Text note>{item.description}</Text></Text>
+    </Body>
+    </ListItem>
+    </Card>
+);
+};
+render(){ // eslint-disable-line
     if(this.props.allProjectsInfo){
         return(
-            <ScrollView padder>
-        <Card>
-        <List>
-        {this.props.allProjectsInfo.map((item, index) =>
-        (<ListItem key={index}>
-            <TouchableOpacity onPress={this.handlePartnerDetail}>
-    <Thumbnail square size={80} source={proimg} />
-            </TouchableOpacity>
-            <Body>
-            <Text>{item.name}</Text>
-        <Text>分类：<Text note>{item.field}</Text></Text>
-        <Text numberOfLines={5} ellipsizeMode ={'tail'}>介绍：<Text note>{item.description}</Text></Text>
-        </Body>
-        </ListItem>))}
-    </List>
-        </Card>
-        </ScrollView>
+            <FlatList
+        data={this.props.allProjectsInfo}
+        renderItem = {this.renderItem}
+        keyExtractor={item => item.id}/>
     )
     }else{
         return (<ScrollView padder><Text>loading</Text></ScrollView>);
     }
-  }
+}
 }
 const mapStateToProps = (state) => ({
     allProjectsInfo: state.allProjectsInfo,

@@ -11,6 +11,8 @@ import avatarSource from './avatar';
 import allPartnersInfo from './allPartners';
 import allBusinessInfo from './allBusiness';
 import allProjectsInfo from './allProjects';
+import partnerDetailInfo from './partnerDetail';
+import morePartnerDetailInfo from './morePartnerDetail';
 
 
 export default combineReducers({
@@ -24,4 +26,6 @@ export default combineReducers({
   allPartnersInfo,
   allBusinessInfo,
   allProjectsInfo,
+  partnerDetailInfo,
+  morePartnerDetailInfo,
 });
