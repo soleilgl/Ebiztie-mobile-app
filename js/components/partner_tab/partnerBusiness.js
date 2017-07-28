@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { List, ListItem, Text, Body, Thumbnail, Card } from 'native-base';
-import { TouchableOpacity, ScrollView } from 'react-native';
+import { TouchableOpacity, ScrollView, FlatList } from 'react-native';
 import { connect } from 'react-redux';
 import { getAllBusinessInfo } from '../../actions';
 
@@ -23,25 +23,26 @@ componentWillMount() {
 handleBusinessDetail() {
     this.props.dispatch(getBusinessInfo());
 }
-  render() { // eslint-disable-line
+
+
+render() { // eslint-disable-line
     if(this.props.allBusinessInfo){
         return(
             <ScrollView padder>
         <Card>
         <List>
-        {this.props.allBusinessInfo.map((item, index) =>
-        (<ListItem key={index}>
+        <ListItem>
             <TouchableOpacity onPress={this.handlePartnerDetail}>
-            <Thumbnail square size={80} source={bizimg} />
+    <Thumbnail square size={80} source={bizimg} />
             </TouchableOpacity>
             <Body>
-            <Text>{item.name}</Text>
-        <Text>类别：<Text note>{item.type}</Text></Text>
-        <Text>行业：<Text note>{item.industry}</Text></Text>
-        <Text numberOfLines={5} ellipsizeMode ={'tail'}>概要<Text note>{item.summary}</Text></Text>
+            <Text></Text>
+        <Text>类别：<Text note></Text></Text>
+        <Text>行业：<Text note></Text></Text>
+        <Text numberOfLines={5} ellipsizeMode ={'tail'}>概要<Text note></Text></Text>
         </Body>
-        </ListItem>))}
-        </List>
+        </ListItem>
+    </List>
         </Card>
         </ScrollView>
     )

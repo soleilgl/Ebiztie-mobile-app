@@ -1,5 +1,5 @@
 import AppNavigator from '../AppNavigator';
-import { SIGNIN_SUCCESS, ACTIVATE_USER, SIGNUP_SUCCESS, REGISTER_AGREEMENT} from '../actions';
+import { SIGNIN_SUCCESS, ACTIVATE_USER, SIGNUP_SUCCESS, REGISTER_AGREEMENT, PARTNER_DETAIL_PARTNER} from '../actions';
 import { NavigationActions } from 'react-navigation';
 
 const initialState = AppNavigator.router.getStateForAction(AppNavigator.router.getActionForPathAndParams('Signin'));
@@ -22,7 +22,11 @@ const navReducer = (state = initialState, action) => {
       case REGISTER_AGREEMENT:
           nextState = AppNavigator.router.getStateForAction(NavigationActions.navigate({ routeName: 'Agreement' }),
               state);
-          break;
+      break;
+      case PARTNER_DETAIL_PARTNER:
+          nextState = AppNavigator.router.getStateForAction(NavigationActions.navigate({ routeName: 'PartnerDetail' }),
+              state);
+      break;
       default:
     nextState = AppNavigator.router.getStateForAction(action, state);
     break;
