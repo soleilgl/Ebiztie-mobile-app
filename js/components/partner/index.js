@@ -48,40 +48,6 @@ class Partner extends Component {
             <Icon name="ios-search" style={{ color: 'white' }} onPress={() => this.props.navigation.navigate('Search')} />
           </Right>
         </Header> */}
-    {/* <Card>
-          <ScrollView style={styles.recommandationbox} horizontal={true}>
-            <TouchableOpacity>
-              <Thumbnail square size={80} source={winnerimg} style={styles.recommandationbox_img} />
-            </TouchableOpacity>
-            <TouchableOpacity>
-              <Thumbnail square size={80} source={Hans} style={styles.recommandationbox_img} />
-            </TouchableOpacity>
-            <TouchableOpacity>
-              <Thumbnail square size={80} source={Hao} style={styles.recommandationbox_img} />
-            </TouchableOpacity>
-            <TouchableOpacity>
-              <Thumbnail square size={80} source={winnerimg} style={styles.recommandationbox_img} />
-            </TouchableOpacity>
-            <TouchableOpacity>
-              <Thumbnail square size={80} source={MrLink} style={styles.recommandationbox_img} />
-            </TouchableOpacity>
-            <TouchableOpacity>
-              <Thumbnail square size={80} source={Kevin} style={styles.recommandationbox_img} />
-            </TouchableOpacity>
-            <TouchableOpacity>
-              <Thumbnail square size={80} source={winnerimg} style={styles.recommandationbox_img} />
-            </TouchableOpacity>
-            <TouchableOpacity>
-              <Thumbnail square size={80} source={Hans} style={styles.recommandationbox_img} />
-            </TouchableOpacity>
-            <TouchableOpacity>
-              <Thumbnail square size={80} source={Hao} style={styles.recommandationbox_img} />
-            </TouchableOpacity>
-            <TouchableOpacity>
-              <Thumbnail square size={80} source={Kevin} style={styles.recommandationbox_img} />
-            </TouchableOpacity>
-          </ScrollView>
-        </Card>*/}
         <View style={styles.partnerbox}>
           <ChangePartnership screenProps={{ rootNavigation: this.props.navigation }} />
         </View>

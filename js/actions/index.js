@@ -29,6 +29,8 @@ export const SAVE_ALL_BUSINESS_INFO = 'SAVE_ALL_BUSINESS_INFO';
 export const SAVE_ALL_PROJECTS_INFO = 'SAVE_ALL_PROJECTS_INFO';
 export const PARTNER_DETAIL_PARTNER = 'PARTNER_DETAIL_PARTNER';
 export const MORE_PARTNER_INFO = 'MORE_PARTNER_INFO';
+export const GET_ALL_BUSINESS = 'GET_ALL_BUSINESS';
+export const GET_ALL_PROJECT = 'GET_ALL_PROJECT';
 
 
 
@@ -405,7 +407,7 @@ export const getAllPartnersInfo = () => {
             'Accept': 'application/json'
         }
     }).then(
-        (res) => {
+        (res) => {``
         return res.json();
     },
         (error) => {
@@ -426,8 +428,7 @@ export const getAllBusinessInfo = () => {
             headers: {
                 'Accept': 'application/json'
             }
-        }).then(
-            (res) => {
+        }).then((res) => {
             return res.json();
     },
         (error) => {
@@ -538,31 +539,17 @@ export const getMorePartnerInfo = (user_id) => {
         }).catch((err) => {dispatch(signupFailure('连接服务器失败，请稍后重试'));});
     }
 }
+export const getAllBusiness = () => {
+    return {
+        type:GET_ALL_BUSINESS,
+    }
+}
+export const getAllProject = () => {
+    return {
+        type:GET_ALL_PROJECT,
+    }
+}
 
-// export const resendActivationEmail = () => {
-//     return (dispatch, getState) => {
-//         const body = {
-//             username: getState().username,
-//         }
-//         return fetch ('http://54.219.171.129/login/mobilelogin', { method: 'post', body: JSON.stringify(body),
-//                 headers: {
-//                     'Content-Type': 'application/json',
-//                     'Accept': 'application/json'
-//                 } }).then(
-//                 (res) => {
-//                 return res.json();
-//     },
-//         (error) => {
-//             dispatch(signinFailure('连接服务器失败，请稍后重试'));
-//         }
-//     ).then((data) => {
-//             if (data.code === 5) {
-//             dispatch(signinSuccess());
-//         }
-//     }
-//     )
-//     }
-// };
 
 
 

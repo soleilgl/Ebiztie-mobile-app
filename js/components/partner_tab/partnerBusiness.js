@@ -10,9 +10,7 @@ class PartnerBusiness extends Component { // eslint-disable-line
   static navigationOptions = {
     tabBarLabel: '商务合作',
   };
-  getDetails = () => {
-    this.props.screenProps.rootNavigation.navigate('BusinessDetail', {});
-  };
+
 constructor(props) {
     super(props);
     this.handleBusinessDetail =  this.handleBusinessDetail.bind(this);
@@ -23,31 +21,34 @@ componentWillMount() {
 handleBusinessDetail() {
     this.props.dispatch(getBusinessInfo());
 }
-
-
-render() { // eslint-disable-line
-    if(this.props.allBusinessInfo){
-        return(
-            <ScrollView padder>
-        <Card>
-        <List>
+renderItem = ({ item }) => {
+    return (
+    <Card>
         <ListItem>
-            <TouchableOpacity onPress={this.handlePartnerDetail}>
-    <Thumbnail square size={80} source={bizimg} />
-            </TouchableOpacity>
-            <Body>
-            <Text></Text>
-        <Text>类别：<Text note></Text></Text>
-        <Text>行业：<Text note></Text></Text>
-        <Text numberOfLines={5} ellipsizeMode ={'tail'}>概要<Text note></Text></Text>
+        <TouchableOpacity onPress={this.handleBusinessDetail.bind(this, item)}>
+        <Thumbnail square size={80} source={{uri: item.icon}} />
+        </TouchableOpacity>
+        <Body>
+        <Text>名称：<Text note>{item.name}</Text></Text>
+        <Text>类别：<Text note>{item.industry}</Text></Text>
+        <Text>行业：<Text note>{item.location}</Text></Text>
+        <Text numberOfLines={5} ellipsizeMode ={'tail'}>概要：<Text note>{item.summary}</Text></Text>
         </Body>
         </ListItem>
-    </List>
-        </Card>
-        </ScrollView>
+    </Card>
+);
+};
+
+render(){ // eslint-disable-line
+    if(this.props.allBusinessInfo){
+        return(
+            <FlatList
+        data={this.props.allBusinessInfo}
+        renderItem = {this.renderItem}
+        keyExtractor={item => item.id}/>
     )
     }else{
-        return (<ScrollView padder><Text>loading</Text></ScrollView>);
+        return (<ScrollView padder><Spinner color="blue" /></ScrollView>);
     }
 }
 }
