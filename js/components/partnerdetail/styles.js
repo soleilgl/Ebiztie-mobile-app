@@ -8,7 +8,7 @@ const deviceWidth = Dimensions.get('window').width;
 
 export default {
   container: {
-    backgroundColor: '#FFF',
+    backgroundColor: '#eaeff2',
   },
   mb: {
     marginBottom: 15,

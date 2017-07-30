@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Image, Dimensions, View } from 'react-native';
 import { Container, Content, Button, Icon, Card, CardItem, Text, Right, Body } from 'native-base';
 import { connect } from 'react-redux';
-import { getMorePartnerInfo } from '../../actions';
+import { getMorePartnerInfo, getAllBusiness, getAllProject } from '../../actions';
 
 import styles from './styles';
 
@@ -25,9 +25,21 @@ class PartnerDetail extends Component { // eslint-disable-line
       fontSize: 15
     },
   };
+    constructor(props) {
+        super(props);
+        this.handleAllBusiness =  this.handleAllBusiness.bind(this);
+        this.handleAllProject =  this.handleAllProject.bind(this);
+    }
     componentWillMount() {
         this.props.dispatch(getMorePartnerInfo(this.props.partnerDetailInfo.basicInfo.user_id));
     }
+    handleAllBusiness(){
+        this.props.dispatch(getAllBusiness());
+    }
+    handleAllProject(){
+        this.props.dispatch(getAllProject());
+    }
+
   render() { // eslint-disable-line
       const partnerIconURL =  this.props.partnerDetailInfo.basicInfo.icon;
       const partnerDemo = this.props.partnerDetailInfo.basicInfo.summaryDemo;
@@ -163,7 +175,9 @@ class PartnerDetail extends Component { // eslint-disable-line
               </Body>
               </CardItem>
               <CardItem footer style={{backgroundColor:'#f5f5f5'}}>
-              <Text>全部</Text>
+              <Button onPress={this.handleAllBusiness}>
+              <Text>点击查看全部</Text>
+              </Button>
               </CardItem>
               </Card>
              <Card>
@@ -191,7 +205,9 @@ class PartnerDetail extends Component { // eslint-disable-line
               </Body>
               </CardItem>
               <CardItem footer style={{backgroundColor:'#f5f5f5'}}>
-              <Text>全部</Text>
+              <Button onPress={this.handleAllProject}>
+              <Text>点击查看全部</Text>
+              </Button>
               </CardItem>
               </Card>
 
@@ -207,7 +223,8 @@ class PartnerDetail extends Component { // eslint-disable-line
               </CardItem>
               </Card>
 
-            <CardItem style={{marginLeft:-20, marginBottom:20}}>
+          <Card style={{marginLeft:-20, marginBottom:30}}>
+            <CardItem>
                 <Button transparent>
                   <Icon name="md-person-add" />
                 </Button>
@@ -225,6 +242,7 @@ class PartnerDetail extends Component { // eslint-disable-line
                   <Icon name="md-create" />
                 </Button>
             </CardItem>
+              </Card>
         </Content>
       </Container>
     );

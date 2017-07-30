@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { List, ListItem, Body, Text, Thumbnail, Card } from 'native-base';
+import { List, ListItem, Body, Text, Thumbnail, Card, Spinner } from 'native-base';
 import { TouchableOpacity, ScrollView, FlatList } from 'react-native';
 import { connect } from 'react-redux';
 import { getAllPartnersInfo, getPartnerInfo } from '../../actions';
@@ -51,7 +51,7 @@ render(){ // eslint-disable-line
         keyExtractor={item => item.user_id}/>
     )
     }else{
-        return (<ScrollView padder><Text>loading</Text></ScrollView>);
+        return (<ScrollView padder><Spinner color="blue" /></ScrollView>);
     }
 }
 }

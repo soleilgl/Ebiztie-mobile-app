@@ -37,6 +37,10 @@ import Search from './components/partner_search';
 import CustomDrawerContentComponent from './components/partner_drawer/index';
 import ActivateUser from './components/activation';
 import Agreement from './components/agreement';
+import VIP from './components/VIP';
+import OfficialAccount from './components/official_account';
+import Business from './components/business';
+import Project from './components/project';
 
 const deviceHeight = Dimensions.get('window').height;
 const deviceWidth = Dimensions.get('window').width;
@@ -160,6 +164,18 @@ const DrawerStack = DrawerNavigator({
       drawerIcon: <Icon name="ios-settings" style={{ color: '#218BC8' }} />,
     },
   },
+    VIP: {
+        screen: VIP,
+            navigationOptions: {
+            drawerIcon: <Icon name="ios-notifications" style={{ color: '#218BC8' }} />,
+        },
+    },
+    OfficialAccount: {
+            screen: OfficialAccount,
+                navigationOptions: {
+                drawerIcon: <Icon name="ios-notifications" style={{ color: '#218BC8' }} />,
+            },
+        },
 },
   { drawerWidth: deviceWidth / 2.5,
     contentOptions: {
@@ -187,6 +203,12 @@ const PartnershipStack = StackNavigator({
   ProjectDetail: {
     screen: ProjectDetail,
   },
+  Business: {
+        screen: Business,
+    },
+    Project: {
+        screen: Project,
+    },
 },
 { headerMode: 'none' }
 );
