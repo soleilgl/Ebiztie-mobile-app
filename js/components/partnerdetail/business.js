@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Image, Dimensions, View } from 'react-native';
-import { Container, Content, Button, Icon, Card, CardItem, Text, Right, Body } from 'native-base';
-
+import { Container, Content, Button, Icon, Card, CardItem, Text, Right, Body, Thumbnail } from 'native-base';
+import { connect } from 'react-redux';
 import styles from './styles';
 
 
@@ -25,77 +25,114 @@ class BusinessDetail extends Component { // eslint-disable-line
     },
   };
   render() { // eslint-disable-line
+      const businessIconURL =  this.props.businessDetailInfo.basicInfo.icon;
+      const businessDetailInfo = this.props.businessDetailInfo;
     return (
       <Container style={styles.container}>
-        {/* <Header style={styles.header} >
-          <Left>
-            <Icon name="ios-arrow-back" style={{ color: 'white' }} />
-          </Left>
-        </Header> */}
-        <Content padder>
-          <Card style={styles.mb}>
-            <CardItem bordered>
-                <Image source={level} style={{marginRight:20}}/>
-                <Icon name="ios-people-outline" style={{ color: 'black' }} />
-              <Right>
-                  <Text>Discovery</Text>
-                  <Text note>USA</Text>
-              </Right>
-            </CardItem>
+      <Content padder>
 
-            <CardItem>
-              <Body>
-                <Image style={{ alignSelf: 'center', height: 150, resizeMode: 'cover', width: deviceWidth / 1.18, marginVertical: 5 }} source={bizimg} />
-                <Text>
-                  Ebiztie.com 是世界上第一个多语言的连接创业者、中小企业主和投资者的社交媒体平台。
-                  Ebiztie.com 的使命是为创业者提供创业帮助以及支持全球中小企业的发展壮大，并寻求在全球最大的两个经济体美国和中国之间建立紧密联系以帮助两国中小企业的发展和壮大。
-              </Text>
-              </Body>
-            </CardItem>
+      {/*<Card>
+      <CardItem>
+      <Body>
+      <Thumbnail big style={{ alignSelf: 'center'}} source={{uri: businessIconURL}} />
+      <Image style={{ alignSelf: 'center', height: 150, resizeMode: 'cover', width: deviceWidth / 1.18, marginVertical: 5 }} source={{uri: businessIconURL}} />
+      </Body>
+      </CardItem>
+      <CardItem>
+      <Button iconLeft transparent style={{marginLeft: -10}}>
+      <Icon active name="ios-checkmark-circle-outline" />
+      <Text>5000</Text>
+      </Button>
+          <Button>
+      <Text style={{fontSize:8}}>加关注</Text>
+      </Button>
+      </CardItem>
+      </Card>*/}
 
-            <CardItem>
-             <View style={styles.btns}>
-               <Card>
-                  <CardItem style={{ borderBottomWidth: 1, borderColor: '#d3d3d3'}}>
-                        <Text style={styles.btns_text}>概况</Text>
-                        <Right>
-                          <Icon name="arrow-forward" />
-                        </Right>
-                  </CardItem>
-                </Card>
-                <Card>
-                  <CardItem style={{ borderBottomWidth: 1, borderColor: '#d3d3d3'}}>
-                        <Text style={styles.btns_text}>创业</Text>
-                        <Right>
-                          <Icon name="arrow-forward" />
-                        </Right>
-                  </CardItem>
-                </Card>
-              </View>
-            </CardItem>
+      <Card>
+      <CardItem>
+      <Thumbnail big style={{ marginLeft: 140}} source={{uri: businessIconURL}} />
+      </CardItem>
+      <CardItem header style={{backgroundColor:'#f5f5f5'}}>
+      <Text>概况</Text>
+      </CardItem>
+      <CardItem style={{borderBottomWidth:1, borderColor:'#f5f5f5'}}>
+      <Body>
+      <Text>名称：<Text note>{businessDetailInfo.name}</Text></Text>
+      <Text>类型：<Text note>{businessDetailInfo.basicInfo.type}</Text></Text>
+      <Text>地点：<Text note>{businessDetailInfo.basicInfo.location}</Text></Text>
+      <Text>创建年限：<Text note>{businessDetailInfo.createYear}</Text></Text>
+      <Text>领域：<Text note>{businessDetailInfo.industry}</Text></Text>
+      <Text>员工数：<Text note>{businessDetailInfo.employeeRange}</Text></Text>
+      <Text>年收入：<Text note>{businessDetailInfo.annualIncome}</Text></Text>
+      <Text>会员现状：<Text note>{businessDetailInfo.myPosition}</Text></Text>
+      </Body>
+      </CardItem>
+      </Card>
 
-            <CardItem style={{marginLeft:-20}}>
-                <Button transparent>
-                  <Icon name="md-person-add" />
-                </Button>
-                <Button transparent>
-                  <Icon name="ios-chatboxes" />
-                </Button>
-                <Button transparent>
-                  <Icon name="ios-thumbs-up" />
-                  <Text>1,926</Text>
-                </Button>
-                <Button transparent>
-                  <Icon name="md-arrow-forward" />
-                </Button>
-                <Button transparent>
-                  <Icon name="md-create" />
-                </Button>
-            </CardItem>
+      <Card>
+      <CardItem header style={{backgroundColor:'#f5f5f5'}}>
+      <Text>简介</Text>
+      </CardItem>
+      <CardItem>
+      <Body>
+      <Text>{businessDetailInfo.summary}</Text>
+      </Body>
+      </CardItem>
+      </Card>
+
+      <Card>
+      <CardItem header style={{backgroundColor:'#f5f5f5'}}>
+      <Text>细节</Text>
+      </CardItem>
+      <CardItem>
+      <Body>
+      <Text>细节：<Text note>{businessDetailInfo.detail}</Text></Text>
+      </Body>
+      </CardItem>
+      </Card>
+
+      <Card>
+      <CardItem header style={{backgroundColor:'#f5f5f5'}}>
+      <Text>产品，细节及程序</Text>
+      </CardItem>
+      <CardItem>
+      <Body>
+      <Text>技术：<Text note>{businessDetailInfo.technology}</Text></Text>
+      <Text>服务：<Text note>{businessDetailInfo.service}</Text></Text>
+      </Body>
+      </CardItem>
+      </Card>
+
+
+      <Card style={{marginBottom:30}}>
+      <CardItem>
+      <Button transparent>
+      <Icon name="md-person-add" />
+          </Button>
+          <Button transparent>
+      <Icon name="ios-chatboxes" />
+          </Button>
+          <Button transparent>
+      <Icon name="ios-thumbs-up" />
+          <Text>1,926</Text>
+      </Button>
+      <Button transparent>
+      <Icon name="md-arrow-forward" />
+          </Button>
+          <Button transparent>
+      <Icon name="md-create" />
+          </Button>
+          </CardItem>
           </Card>
-        </Content>
+          </Content>
+
       </Container>
     );
   }
 }
-export default BusinessDetail
+const mapStateToProps = (state) => ({
+    businessDetailInfo: state.businessDetailInfo,
+});
+
+export default connect(mapStateToProps)(BusinessDetail);

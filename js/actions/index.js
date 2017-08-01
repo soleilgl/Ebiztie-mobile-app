@@ -31,6 +31,8 @@ export const PARTNER_DETAIL_PARTNER = 'PARTNER_DETAIL_PARTNER';
 export const MORE_PARTNER_INFO = 'MORE_PARTNER_INFO';
 export const GET_ALL_BUSINESS = 'GET_ALL_BUSINESS';
 export const GET_ALL_PROJECT = 'GET_ALL_PROJECT';
+export const GET_BUSINESS_DETAIL_INFO = 'GET_BUSINESS_DETAIL_INFO';
+export const GET_PROJECT_DETAIL_INFO = 'GET_PROJECT_DETAIL_INFO';
 
 
 
@@ -85,20 +87,18 @@ export const signin = () => {
       (res) => {
         //dispatch(signinSuccess('sign is sucessful'))
         return res.json();
-      },
-      (error) => {
+      }).then((data) => {
+            if (data.code === 5) {
+            dispatch(signinSuccess('sign is sucessful'));
+        } else if (data.code === 1) {
+            dispatch(signinFailure(data.message));
+        }else if (data.code === 2){
+            dispatch(activateUser())
+        }
+    }).catch((error) => {
         dispatch(signinFailure('连接服务器失败，请稍后重试'));
       }
-    ).then((data) => {
-      if (data.code === 5) {
-        dispatch(signinSuccess('sign is sucessful'));
-      } else if (data.code === 1) {
-        dispatch(signinFailure(data.message));
-      }else if (data.code === 2){
-        dispatch(activateUser())
-      }
-    }
-      )
+    )
   }
 };
 
@@ -528,7 +528,6 @@ export const getMorePartnerInfo = (user_id) => {
         }).then(function(response){
             return response.json()
         });
-
         return Promise.all([ fetchSurvey, fetchBusinesses, fetchProject]).then((values) => {
             const morePartnerDetailInfo = {
                 survey: values[0],
@@ -549,7 +548,58 @@ export const getAllProject = () => {
         type:GET_ALL_PROJECT,
     }
 }
+const getBusinessDetailInfo = (data) => {
+    return {
+        type:GET_BUSINESS_DETAIL_INFO,
+        data: data
+    }
+}
+export const getBusinessInfo = (item) => {
+    return(dispatch, getState) => {
+        fetch(`http://54.219.171.129/api/private/businesses/${item.id}`,{
+        method: 'get',
+        headers: {
+            'Accept': 'application/json'
+        }
+    }).then(
+        (res) => {
+        return res.json();
+},
+    (error) => {
+        dispatch(signupFailure('连接服务器失败，请稍后重试'));
+    }
 
+).then((data) => {
+        data.basicInfo= item
+    dispatch (getBusinessDetailInfo(data));
+})
+    }
+}
+const getProjectDetailInfo = (data) => {
+    return {
+        type:GET_PROJECT_DETAIL_INFO,
+        data: data
+    }
+}
+export const getProjectInfo = (item) => {
+    return(dispatch, getState) => {
+        fetch(`http://54.219.171.129/api/private/projects/${item.id}`,{
+            method: 'get',
+            headers: {
+                'Accept': 'application/json'
+            }
+        }).then(
+            (res) => {
+            return res.json();
+    },
+        (error) => {
+            dispatch(signupFailure('连接服务器失败，请稍后重试'));
+        }
 
-
+    ).then((data) => {
+            data.basicInfo= item
+        dispatch (getProjectDetailInfo(data));
+    })
+    }
+}
 

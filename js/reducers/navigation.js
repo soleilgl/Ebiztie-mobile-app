@@ -1,5 +1,5 @@
 import AppNavigator from '../AppNavigator';
-import { SIGNIN_SUCCESS, ACTIVATE_USER, SIGNUP_SUCCESS, REGISTER_AGREEMENT, PARTNER_DETAIL_PARTNER, GET_ALL_BUSINESS, GET_ALL_PROJECT} from '../actions';
+import { SIGNIN_SUCCESS, ACTIVATE_USER, SIGNUP_SUCCESS, REGISTER_AGREEMENT, PARTNER_DETAIL_PARTNER, GET_ALL_BUSINESS, GET_ALL_PROJECT, GET_BUSINESS_DETAIL_INFO, GET_PROJECT_DETAIL_INFO} from '../actions';
 import { NavigationActions } from 'react-navigation';
 
 const initialState = AppNavigator.router.getStateForAction(AppNavigator.router.getActionForPathAndParams('Signin'));
@@ -34,7 +34,15 @@ const navReducer = (state = initialState, action) => {
       case GET_ALL_PROJECT:
           nextState = AppNavigator.router.getStateForAction(NavigationActions.navigate({ routeName: 'Project' }),
               state);
-          break;
+      break;
+      case GET_BUSINESS_DETAIL_INFO:
+          nextState = AppNavigator.router.getStateForAction(NavigationActions.navigate({ routeName: 'BusinessDetail' }),
+              state);
+      break;
+      case GET_PROJECT_DETAIL_INFO:
+          nextState = AppNavigator.router.getStateForAction(NavigationActions.navigate({ routeName: 'ProjectDetail' }),
+              state);
+      break;
       default:
     nextState = AppNavigator.router.getStateForAction(action, state);
     break;

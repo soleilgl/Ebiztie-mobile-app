@@ -1,6 +1,7 @@
 import React, { Component, } from 'react';
 import { Container, View, Header, Card, Title, Button, Icon, Thumbnail, Left, Right, Footer, FooterTab } from 'native-base';
 import { ScrollView, TouchableOpacity, Dimensions, Platform } from 'react-native';
+import { connect } from 'react-redux';
 import styles from './styles';
 
 import { ChangePartnership } from '../../AppNavigator';
@@ -84,5 +85,7 @@ class Partner extends Component {
     );
   }
 }
-
-export default Partner;
+const mapStateToProps = (state) => ({
+    avatarSource: state.avatarSource,
+})
+export default connect(mapStateToProps) (Partner);

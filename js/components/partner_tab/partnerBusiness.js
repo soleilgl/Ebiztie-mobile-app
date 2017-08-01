@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { List, ListItem, Text, Body, Thumbnail, Card } from 'native-base';
 import { TouchableOpacity, ScrollView, FlatList } from 'react-native';
 import { connect } from 'react-redux';
-import { getAllBusinessInfo } from '../../actions';
+import { getAllBusinessInfo, getBusinessInfo } from '../../actions';
 
 const bizimg = require('../../../img/discoverlogo.jpg');
 
@@ -18,8 +18,8 @@ constructor(props) {
 componentWillMount() {
     this.props.dispatch(getAllBusinessInfo());
 }
-handleBusinessDetail() {
-    this.props.dispatch(getBusinessInfo());
+handleBusinessDetail(item) {
+    this.props.dispatch(getBusinessInfo(item));
 }
 renderItem = ({ item }) => {
     return (
@@ -30,8 +30,8 @@ renderItem = ({ item }) => {
         </TouchableOpacity>
         <Body>
         <Text>名称：<Text note>{item.name}</Text></Text>
-        <Text>类别：<Text note>{item.industry}</Text></Text>
-        <Text>行业：<Text note>{item.location}</Text></Text>
+        <Text>行业：<Text note>{item.industry}</Text></Text>
+        <Text>地点：<Text note>{item.location}</Text></Text>
         <Text numberOfLines={5} ellipsizeMode ={'tail'}>概要：<Text note>{item.summary}</Text></Text>
         </Body>
         </ListItem>

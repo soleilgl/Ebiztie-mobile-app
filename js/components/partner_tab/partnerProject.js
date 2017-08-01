@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Card, List, ListItem, Text, Body, Thumbnail } from 'native-base';
 import { TouchableOpacity, ScrollView, FlatList } from 'react-native';
 import { connect } from 'react-redux';
-import { getAllProjectsInfo } from '../../actions';
+import { getAllProjectsInfo, getProjectInfo } from '../../actions';
 
 const proimg = require('../../../img/web-cover1.jpg');
 
@@ -18,17 +18,14 @@ constructor(props) {
 componentWillMount() {
     this.props.dispatch(getAllProjectsInfo());
 }
-handleProjectDetail() {
-    this.props.dispatch(getProjectInfo());
+handleProjectDetail(item) {
+    this.props.dispatch(getProjectInfo(item));
 }
 renderItem = ({ item }) => {
-    if (!item.icon) {
-        item.icon = 'https://s3-us-west-1.amazonaws.com/userpictureebiztie/projects_folder_badged.png';
-    }
     return (
     <Card>
         <ListItem>
-        <TouchableOpacity >
+        <TouchableOpacity onPress={this.handleProjectDetail.bind(this, item)}>
         <Thumbnail square size={80} source={{uri: item.icon}} />
         </TouchableOpacity>
         <Body>
