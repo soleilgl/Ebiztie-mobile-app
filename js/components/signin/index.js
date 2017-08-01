@@ -10,6 +10,9 @@ import styles from './styles';
 import { usernameInput, passwordInput, signin, LinkedinSignIn } from '../../actions';
 
 const logo = require('../../../img/Ebiztie.jpg');
+const logo1 = require('../../../img/1.jpg');
+const logo2 = require('../../../img/2.jpg');
+
 const wechat = require('../../../img/wechatimg.jpg');
 const facebook = require('../../../img/facebookimg.jpg');
 const linkedin = require('../../../img/linkedinimg.jpg');
@@ -46,8 +49,11 @@ class Signin extends Component {
 
         <Content>
           <View style={styles.logobox}>
-          <Image source={logo} style={styles.logo} />
+          <Image source={logo1} style={styles.logo1} />
           </View>
+      <View style={styles.logobox}>
+  <Image source={logo2} style={styles.logo2} />
+  </View>
           <View style={styles.loginbox}>
             <InputGroup rounded style={{ marginBottom: 30 }}>
               <Icon name="md-person" style={{ color: '#0A69FE' }} />

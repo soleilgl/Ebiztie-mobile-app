@@ -13,6 +13,9 @@ import allBusinessInfo from './allBusiness';
 import allProjectsInfo from './allProjects';
 import partnerDetailInfo from './partnerDetail';
 import morePartnerDetailInfo from './morePartnerDetail';
+import businessDetailInfo from './businessDetail';
+import projectDetailInfo from './projectDetail';
+
 
 
 export default combineReducers({
@@ -28,4 +31,6 @@ export default combineReducers({
   allProjectsInfo,
   partnerDetailInfo,
   morePartnerDetailInfo,
+  businessDetailInfo,
+  projectDetailInfo,
 });
