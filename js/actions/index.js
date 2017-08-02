@@ -33,7 +33,7 @@ export const GET_ALL_BUSINESS = 'GET_ALL_BUSINESS';
 export const GET_ALL_PROJECT = 'GET_ALL_PROJECT';
 export const GET_BUSINESS_DETAIL_INFO = 'GET_BUSINESS_DETAIL_INFO';
 export const GET_PROJECT_DETAIL_INFO = 'GET_PROJECT_DETAIL_INFO';
-
+export const SAVE_MY_INFO = 'SAVE_MY_INFO';
 
 
 // use when user input ID to log in
@@ -79,7 +79,7 @@ export const signin = () => {
       username: getState().username,
       password: getState().password
     }
-    return fetch ('http://54.219.171.129/login/mobilelogin', { method: 'post', body: JSON.stringify(body),
+    return fetch ('http://localhost:5000/login/mobilelogin', { method: 'post', body: JSON.stringify(body),
         headers: {
           'Content-Type': 'application/json',
           'Accept': 'application/json'
@@ -251,7 +251,7 @@ export const signup = () => {
             dispatch(signupMissingItems("所有为必填相"))
         }else{
             dispatch(cleanErrorMessage(''))
-            return fetch ('http://54.219.171.129/register/mobileapp', { method: 'post',
+            return fetch ('http://localhost:5000/register/mobileapp', { method: 'post',
                     body: JSON.stringify(body),
                     headers: {
                         'Content-Type': 'application/json',
@@ -261,7 +261,7 @@ export const signup = () => {
                     return res.json();
         },
             (error) => {
-                dispatch(signupFailure('连接服务器失败，请稍后重试'));
+                dispatch(signinFailure('连接服务器失败，请稍后重试'));
             }
         ).then((data) => {
                 if (data.code === 5) {
@@ -292,7 +292,7 @@ export const changeAvatar = (data) => {
 }
 const saveAvartarURL = (url) => {
     return (dispatch, getState) => {
-         fetch (`http://54.219.171.129/api/private/profile/profileIcon?purpose=profile-logo&url=${url}`, {
+         fetch (`http://localhost:5000/api/private/profile/profileIcon?purpose=profile-logo&url=${url}`, {
             method: 'put',
             headers: {
                 'Content-Type': 'application/json',
@@ -304,7 +304,7 @@ const saveAvartarURL = (url) => {
             //awsUrl={url:https://userpictureebiztie.s3-us-west-1.amazonaws.com/7152d1028806e3780b3f996b6076950d.jpg?AWSAccessKeyId=AKIAJVA3NAQYBKGDIZAA&Expires=1500055895&Signature=zOaxkVU78hSZjbpD7lNOueF%2FcCU%3D}
     },
         (error) => {
-            dispatch(signupFailure('连接服务器失败，请稍后重试'));
+            dispatch(signinFailure('连接服务器失败，请稍后重试'));
         }
     ).then((data) => {
             dispatch (changeAvatar(data));
@@ -336,12 +336,12 @@ export const uploadImageRegister = (source) => {
             },
             body: body,
         }
-        fetch ('http://54.219.171.129/api/private/uploadFiles/profile', config).then(
+        fetch ('http://localhost:5000/api/private/uploadFiles/profile', config).then(
                 (res) => {
                 return res.json();
     },
         (error) => {
-            dispatch(signupFailure('连接服务器失败，请稍后重试'));
+            dispatch(signinFailure('连接服务器失败，请稍后重试'));
         }
     ).then((data) => {
             console.log("data is" + data)
@@ -357,7 +357,7 @@ export const uploadImageRegister = (source) => {
 // after user login, get user pic by using user ID
 export const getProfileImage = () => {
     return (dispatch, getState) => {
-        fetch('http://54.219.171.129/api/private/profile/pictures',{
+        fetch('http://localhost:5000/api/private/profile/pictures',{
             method: 'get',
             headers: {
                 'Accept': 'application/json'
@@ -367,7 +367,7 @@ export const getProfileImage = () => {
             return res.json();
     },
         (error) => {
-            dispatch(signupFailure('连接服务器失败，请稍后重试'));
+            dispatch(signinFailure('连接服务器失败，请稍后重试'));
         }
 
     ).then((imagedata) => {
@@ -401,7 +401,7 @@ const saveAllProjectsInfo = (data) => {
 //get all partners info
 export const getAllPartnersInfo = () => {
     return (dispatch, getState) => {
-    fetch('http://54.219.171.129/api/private/recommendation/newElites/mobileapp',{
+    fetch('http://localhost:5000/api/private/recommendation/newElites/mobileapp',{
         method: 'get',
         headers: {
             'Accept': 'application/json'
@@ -411,7 +411,7 @@ export const getAllPartnersInfo = () => {
         return res.json();
     },
         (error) => {
-            dispatch(signupFailure('连接服务器失败，请稍后重试'));
+            dispatch(signinFailure('连接服务器失败，请稍后重试'));
         }
 
     ).then((data) => {
@@ -423,7 +423,7 @@ export const getAllPartnersInfo = () => {
 //get all businesses info
 export const getAllBusinessInfo = () => {
     return (dispatch, getState) => {
-        fetch('http://54.219.171.129/api/private/recommendation/newBusinesses/mobileapp',{
+        fetch('http://localhost:5000/api/private/recommendation/newBusinesses/mobileapp',{
             method: 'get',
             headers: {
                 'Accept': 'application/json'
@@ -432,7 +432,7 @@ export const getAllBusinessInfo = () => {
             return res.json();
     },
         (error) => {
-            dispatch(signupFailure('连接服务器失败，请稍后重试'));
+            dispatch(signinFailure('连接服务器失败，请稍后重试'));
         }
 
     ).then((data) => {
@@ -444,7 +444,7 @@ export const getAllBusinessInfo = () => {
 //get all projects info
 export const getAllProjectsInfo = () => {
     return (dispatch, getState) => {
-        fetch('http://54.219.171.129/api/private/recommendation/newProjects/mobileapp',{
+        fetch('http://localhost:5000/api/private/recommendation/newProjects/mobileapp',{
             method: 'get',
             headers: {
                 'Accept': 'application/json'
@@ -454,7 +454,7 @@ export const getAllProjectsInfo = () => {
             return res.json();
     },
         (error) => {
-            dispatch(signupFailure('连接服务器失败，请稍后重试'));
+            dispatch(signinFailure('连接服务器失败，请稍后重试'));
         }
 
     ).then((data) => {
@@ -473,7 +473,7 @@ const partnerDetail_Partner = (data) => {
 //also push item info from home page to data to reuse user_id, icon (awsURL) and ect
 export const getPartnerInfo = (item) => {
     return (dispatch, getState) => {
-        fetch(`http://54.219.171.129/api/private/partners/${item.user_id}/profile`,{
+        fetch(`http://localhost:5000/api/private/partners/${item.user_id}/profile`,{
             method: 'get',
             headers: {
                 'Accept': 'application/json'
@@ -483,7 +483,7 @@ export const getPartnerInfo = (item) => {
             return res.json();
     },
         (error) => {
-            dispatch(signupFailure('连接服务器失败，请稍后重试'));
+            dispatch(signinFailure('连接服务器失败，请稍后重试'));
         }
 
     ).then((data) => {
@@ -504,7 +504,7 @@ const getMorePartnerDetailInfo = (morePartnerDetailInfo) => {
 //use promise to get all results (survey, businesses)back and put in state.moremorePartnerDetailInfo
 export const getMorePartnerInfo = (user_id) => {
     return (dispatch, getState) => {
-        const fetchSurvey = fetch(`http://54.219.171.129/api/private/partners/${user_id}/thought`,{
+        const fetchSurvey = fetch(`http://localhost:5000/api/private/partners/${user_id}/thought`,{
             method: 'get',
             headers: {
                 'Accept': 'application/json'
@@ -512,7 +512,7 @@ export const getMorePartnerInfo = (user_id) => {
         }).then(function(response){
             return response.json()
         });
-        const fetchBusinesses = fetch(`http://54.219.171.129/api/private/partners/${user_id}/businesses`,{
+        const fetchBusinesses = fetch(`http://localhost:5000/api/private/partners/${user_id}/businesses`,{
             method: 'get',
             headers: {
                 'Accept': 'application/json'
@@ -520,7 +520,7 @@ export const getMorePartnerInfo = (user_id) => {
         }).then(function(response){
             return response.json()
         });
-        const fetchProject = fetch(`http://54.219.171.129/api/private/partners/${user_id}/project`,{
+        const fetchProject = fetch(`http://localhost:5000/api/private/partners/${user_id}/project`,{
             method: 'get',
             headers: {
                 'Accept': 'application/json'
@@ -535,7 +535,7 @@ export const getMorePartnerInfo = (user_id) => {
                 project: values[2],
             };
             dispatch(getMorePartnerDetailInfo(morePartnerDetailInfo));
-        }).catch((err) => {dispatch(signupFailure('连接服务器失败，请稍后重试'));});
+        }).catch((err) => {dispatch(signinFailure('连接服务器失败，请稍后重试'));});
     }
 }
 export const getAllBusiness = () => {
@@ -556,7 +556,7 @@ const getBusinessDetailInfo = (data) => {
 }
 export const getBusinessInfo = (item) => {
     return(dispatch, getState) => {
-        fetch(`http://54.219.171.129/api/private/businesses/${item.id}`,{
+        fetch(`http://localhost:5000/api/private/businesses/${item.id}`,{
         method: 'get',
         headers: {
             'Accept': 'application/json'
@@ -566,7 +566,7 @@ export const getBusinessInfo = (item) => {
         return res.json();
 },
     (error) => {
-        dispatch(signupFailure('连接服务器失败，请稍后重试'));
+        dispatch(signinFailure('连接服务器失败，请稍后重试'));
     }
 
 ).then((data) => {
@@ -583,7 +583,7 @@ const getProjectDetailInfo = (data) => {
 }
 export const getProjectInfo = (item) => {
     return(dispatch, getState) => {
-        fetch(`http://54.219.171.129/api/private/projects/${item.id}`,{
+        fetch(`http://localhost:5000/api/private/projects/${item.id}`,{
             method: 'get',
             headers: {
                 'Accept': 'application/json'
@@ -593,7 +593,7 @@ export const getProjectInfo = (item) => {
             return res.json();
     },
         (error) => {
-            dispatch(signupFailure('连接服务器失败，请稍后重试'));
+            dispatch(signinFailure('连接服务器失败，请稍后重试'));
         }
 
     ).then((data) => {
@@ -602,4 +602,73 @@ export const getProjectInfo = (item) => {
     })
     }
 }
+const saveMyInfo =(myInfo) => {
+    return {
+        type:SAVE_MY_INFO,
+        data:myInfo
+    }
+}
 
+export const getMyInfo = () => {
+    return (dispatch, getState) => {
+        const fetchBasicInfo = fetch('http://localhost:5000/api/private/profile/basic',{
+            method: 'get',
+            headers: {
+                'Accept': 'application/json'
+            }
+        }).then(function(response){
+            return response.json()
+        });
+        const fetchAdditionalInfo = fetch('http://localhost:5000/api/private/profile/supplement',{
+            method: 'get',
+            headers: {
+                'Accept': 'application/json'
+            }
+        }).then(function(response){
+            return response.json()
+        });
+        const fetchSurvey = fetch('http://localhost:5000/api/private/thought',{
+            method: 'get',
+            headers: {
+                'Accept': 'application/json'
+            }
+        }).then(function(response){
+            return response.json()
+        });
+        const fetchTags = fetch('http://localhost:5000/api/private/profile/tags',{
+            method: 'get',
+            headers: {
+                'Accept': 'application/json'
+            }
+        }).then(function(response){
+            return response.json()
+        });
+        const fetchSkills = fetch('http://localhost:5000/api/private/profile/skills',{
+            method: 'get',
+            headers: {
+                'Accept': 'application/json'
+            }
+        }).then(function(response){
+            return response.json()
+        });
+        const fetchSetting = fetch('http://localhost:5000/api/private/profile/setting',{
+            method: 'get',
+            headers: {
+                'Accept': 'application/json'
+            }
+        }).then(function(response){
+            return response.json()
+        });
+        return Promise.all([ fetchBasicInfo, fetchAdditionalInfo, fetchSurvey, fetchTags, fetchSkills, fetchSetting]).then((values) => {
+                const myInfo = {
+                    myBasicInfo: values[0],
+                    myAdditionalInfo: values[1],
+                    mySurvey: values[2],
+                    myTags: values[3],
+                    mySkills: values[4],
+                    mySetting: values[5],
+                };
+        dispatch(saveMyInfo(myInfo));
+    }).catch((err) => {dispatch(signinFailure('连接服务器失败，请稍后重试'));});
+    }
+}

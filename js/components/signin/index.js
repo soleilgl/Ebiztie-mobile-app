@@ -9,7 +9,7 @@ import { NavigationActions } from 'react-navigation';
 import styles from './styles';
 import { usernameInput, passwordInput, signin, LinkedinSignIn } from '../../actions';
 
-const logo = require('../../../img/Ebiztie.jpg');
+const logo = require('../../../img/ebiztie_logo.png');
 const logo1 = require('../../../img/1.jpg');
 const logo2 = require('../../../img/2.jpg');
 

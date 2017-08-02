@@ -3,6 +3,8 @@ import { Container, View, Header, Card, Title, Button, Icon, Thumbnail, Left, Ri
 import { ScrollView, TouchableOpacity, Dimensions, Platform } from 'react-native';
 import { connect } from 'react-redux';
 import styles from './styles';
+import { getMyInfo } from '../../actions';
+
 
 import { ChangePartnership } from '../../AppNavigator';
 
@@ -36,6 +38,13 @@ class Partner extends Component {
       backgroundColor: 'green',
     },
   });
+  constructor(props) {
+      super(props);
+      this.handleMyInfo =  this.handleMyInfo.bind(this);
+  }
+  handleMyInfo() {
+      this.props.dispatch(getMyInfo())
+  }
 
   render() {
     return (
@@ -78,6 +87,11 @@ class Partner extends Component {
               onPress={() => this.props.navigation.navigate('Activity', {})}
               title="Go to Activity page">
               <Icon name="ios-bicycle-outline" style={styles.footericon} />
+            </Button>
+            <Button
+            onPress={this.handleMyInfo}
+            title="Go to Setup page">
+                <Icon name="ios-settings" style={styles.footericon} />
             </Button>
           </FooterTab>
         </Footer>

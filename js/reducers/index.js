@@ -15,6 +15,7 @@ import partnerDetailInfo from './partnerDetail';
 import morePartnerDetailInfo from './morePartnerDetail';
 import businessDetailInfo from './businessDetail';
 import projectDetailInfo from './projectDetail';
+import myInfo from './myInfo';
 
 
 
@@ -33,4 +34,5 @@ export default combineReducers({
   morePartnerDetailInfo,
   businessDetailInfo,
   projectDetailInfo,
+  myInfo,
 });
