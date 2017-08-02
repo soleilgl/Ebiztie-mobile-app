@@ -79,7 +79,7 @@ export const signin = () => {
       username: getState().username,
       password: getState().password
     }
-    return fetch ('http://localhost:5000/login/mobilelogin', { method: 'post', body: JSON.stringify(body),
+    return fetch ('http://54.219.171.129/login/mobilelogin', { method: 'post', body: JSON.stringify(body),
         headers: {
           'Content-Type': 'application/json',
           'Accept': 'application/json'
@@ -251,7 +251,7 @@ export const signup = () => {
             dispatch(signupMissingItems("所有为必填相"))
         }else{
             dispatch(cleanErrorMessage(''))
-            return fetch ('http://localhost:5000/register/mobileapp', { method: 'post',
+            return fetch ('http://54.219.171.129/register/mobileapp', { method: 'post',
                     body: JSON.stringify(body),
                     headers: {
                         'Content-Type': 'application/json',
@@ -292,7 +292,7 @@ export const changeAvatar = (data) => {
 }
 const saveAvartarURL = (url) => {
     return (dispatch, getState) => {
-         fetch (`http://localhost:5000/api/private/profile/profileIcon?purpose=profile-logo&url=${url}`, {
+         fetch (`http://54.219.171.129/api/private/profile/profileIcon?purpose=profile-logo&url=${url}`, {
             method: 'put',
             headers: {
                 'Content-Type': 'application/json',
@@ -336,7 +336,7 @@ export const uploadImageRegister = (source) => {
             },
             body: body,
         }
-        fetch ('http://localhost:5000/api/private/uploadFiles/profile', config).then(
+        fetch ('http://54.219.171.129/api/private/uploadFiles/profile', config).then(
                 (res) => {
                 return res.json();
     },
@@ -357,7 +357,7 @@ export const uploadImageRegister = (source) => {
 // after user login, get user pic by using user ID
 export const getProfileImage = () => {
     return (dispatch, getState) => {
-        fetch('http://localhost:5000/api/private/profile/pictures',{
+        fetch('http://54.219.171.129/api/private/profile/pictures',{
             method: 'get',
             headers: {
                 'Accept': 'application/json'
@@ -401,7 +401,7 @@ const saveAllProjectsInfo = (data) => {
 //get all partners info
 export const getAllPartnersInfo = () => {
     return (dispatch, getState) => {
-    fetch('http://localhost:5000/api/private/recommendation/newElites/mobileapp',{
+    fetch('http://54.219.171.129/api/private/recommendation/newElites/mobileapp',{
         method: 'get',
         headers: {
             'Accept': 'application/json'
@@ -423,7 +423,7 @@ export const getAllPartnersInfo = () => {
 //get all businesses info
 export const getAllBusinessInfo = () => {
     return (dispatch, getState) => {
-        fetch('http://localhost:5000/api/private/recommendation/newBusinesses/mobileapp',{
+        fetch('http://54.219.171.129/api/private/recommendation/newBusinesses/mobileapp',{
             method: 'get',
             headers: {
                 'Accept': 'application/json'
@@ -444,7 +444,7 @@ export const getAllBusinessInfo = () => {
 //get all projects info
 export const getAllProjectsInfo = () => {
     return (dispatch, getState) => {
-        fetch('http://localhost:5000/api/private/recommendation/newProjects/mobileapp',{
+        fetch('http://54.219.171.129/api/private/recommendation/newProjects/mobileapp',{
             method: 'get',
             headers: {
                 'Accept': 'application/json'
@@ -473,7 +473,7 @@ const partnerDetail_Partner = (data) => {
 //also push item info from home page to data to reuse user_id, icon (awsURL) and ect
 export const getPartnerInfo = (item) => {
     return (dispatch, getState) => {
-        fetch(`http://localhost:5000/api/private/partners/${item.user_id}/profile`,{
+        fetch(`http://54.219.171.129/api/private/partners/${item.user_id}/profile`,{
             method: 'get',
             headers: {
                 'Accept': 'application/json'
@@ -504,7 +504,7 @@ const getMorePartnerDetailInfo = (morePartnerDetailInfo) => {
 //use promise to get all results (survey, businesses)back and put in state.moremorePartnerDetailInfo
 export const getMorePartnerInfo = (user_id) => {
     return (dispatch, getState) => {
-        const fetchSurvey = fetch(`http://localhost:5000/api/private/partners/${user_id}/thought`,{
+        const fetchSurvey = fetch(`http://54.219.171.129/api/private/partners/${user_id}/thought`,{
             method: 'get',
             headers: {
                 'Accept': 'application/json'
@@ -512,7 +512,7 @@ export const getMorePartnerInfo = (user_id) => {
         }).then(function(response){
             return response.json()
         });
-        const fetchBusinesses = fetch(`http://localhost:5000/api/private/partners/${user_id}/businesses`,{
+        const fetchBusinesses = fetch(`http://54.219.171.129/api/private/partners/${user_id}/businesses`,{
             method: 'get',
             headers: {
                 'Accept': 'application/json'
@@ -520,7 +520,7 @@ export const getMorePartnerInfo = (user_id) => {
         }).then(function(response){
             return response.json()
         });
-        const fetchProject = fetch(`http://localhost:5000/api/private/partners/${user_id}/project`,{
+        const fetchProject = fetch(`http://54.219.171.129/api/private/partners/${user_id}/project`,{
             method: 'get',
             headers: {
                 'Accept': 'application/json'
@@ -556,7 +556,7 @@ const getBusinessDetailInfo = (data) => {
 }
 export const getBusinessInfo = (item) => {
     return(dispatch, getState) => {
-        fetch(`http://localhost:5000/api/private/businesses/${item.id}`,{
+        fetch(`http://54.219.171.129/api/private/businesses/${item.id}`,{
         method: 'get',
         headers: {
             'Accept': 'application/json'
@@ -583,7 +583,7 @@ const getProjectDetailInfo = (data) => {
 }
 export const getProjectInfo = (item) => {
     return(dispatch, getState) => {
-        fetch(`http://localhost:5000/api/private/projects/${item.id}`,{
+        fetch(`http://54.219.171.129/api/private/projects/${item.id}`,{
             method: 'get',
             headers: {
                 'Accept': 'application/json'
@@ -611,7 +611,7 @@ const saveMyInfo =(myInfo) => {
 
 export const getMyInfo = () => {
     return (dispatch, getState) => {
-        const fetchBasicInfo = fetch('http://localhost:5000/api/private/profile/basic',{
+        const fetchBasicInfo = fetch('http://54.219.171.129/api/private/profile/basic',{
             method: 'get',
             headers: {
                 'Accept': 'application/json'
@@ -619,7 +619,7 @@ export const getMyInfo = () => {
         }).then(function(response){
             return response.json()
         });
-        const fetchAdditionalInfo = fetch('http://localhost:5000/api/private/profile/supplement',{
+        const fetchAdditionalInfo = fetch('http://54.219.171.129/api/private/profile/supplement',{
             method: 'get',
             headers: {
                 'Accept': 'application/json'
@@ -627,7 +627,7 @@ export const getMyInfo = () => {
         }).then(function(response){
             return response.json()
         });
-        const fetchSurvey = fetch('http://localhost:5000/api/private/thought',{
+        const fetchSurvey = fetch('http://54.219.171.129/api/private/thought',{
             method: 'get',
             headers: {
                 'Accept': 'application/json'
@@ -635,7 +635,7 @@ export const getMyInfo = () => {
         }).then(function(response){
             return response.json()
         });
-        const fetchTags = fetch('http://localhost:5000/api/private/profile/tags',{
+        const fetchTags = fetch('http://54.219.171.129/api/private/profile/tags',{
             method: 'get',
             headers: {
                 'Accept': 'application/json'
@@ -643,7 +643,7 @@ export const getMyInfo = () => {
         }).then(function(response){
             return response.json()
         });
-        const fetchSkills = fetch('http://localhost:5000/api/private/profile/skills',{
+        const fetchSkills = fetch('http://54.219.171.129/api/private/profile/skills',{
             method: 'get',
             headers: {
                 'Accept': 'application/json'
@@ -651,7 +651,7 @@ export const getMyInfo = () => {
         }).then(function(response){
             return response.json()
         });
-        const fetchSetting = fetch('http://localhost:5000/api/private/profile/setting',{
+        const fetchSetting = fetch('http://54.219.171.129/api/private/profile/setting',{
             method: 'get',
             headers: {
                 'Accept': 'application/json'
