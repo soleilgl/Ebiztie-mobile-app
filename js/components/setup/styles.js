@@ -8,7 +8,7 @@ const deviceWidth = Dimensions.get('window').width;
 
 export default {
   container: {
-    backgroundColor: '#FFF',
+    backgroundColor: '#eaeff2',
   },
   header: {
     backgroundColor: '#218BC8',
@@ -36,6 +36,6 @@ export default {
   change_img: {
     alignSelf: 'center',
     width: deviceWidth,
-    backgroundColor: '#dcdcdc'
+    backgroundColor: '#eaeff2'
   }
 };
