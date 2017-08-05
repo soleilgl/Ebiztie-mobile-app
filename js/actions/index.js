@@ -34,6 +34,16 @@ export const GET_ALL_PROJECT = 'GET_ALL_PROJECT';
 export const GET_BUSINESS_DETAIL_INFO = 'GET_BUSINESS_DETAIL_INFO';
 export const GET_PROJECT_DETAIL_INFO = 'GET_PROJECT_DETAIL_INFO';
 export const SAVE_MY_INFO = 'SAVE_MY_INFO';
+export const CHANGE_MY_BASIC_INFO = 'CHANGE_MY_BASIC_INFO';
+export const CHANGE_MY_ADDITIONAL_INFO = 'CHANGE_MY_ADDITIONAL_INFO';
+export const CHANGE_MY_SURVEY_INFO = 'CHANGE_MY_SURVEY_INFO';
+export const CHANGE_MY_TAGS_INFO = 'CHANGE_MY_TAGS_INFO';
+export const CHANGE_MY_SKILLS_INFO = 'CHANGE_MY_SKILLS_INFO';
+export const CHANGE_MY_SETTING_INFO = 'CHANGE_MY_SETTING_INFO';
+export const ADD_MY_EMPLOYER_INFO = 'ADD_MY_EMPLOYER_INFO';
+export const ADD_MY_SCHOOL_INFO = 'ADD_MY_SCHOOL_INFO';
+export const CHANGE_MY_EMPLOYER_INFO = 'CHANGE_MY_EMPLOYER_INFO';
+export const CHANGE_MY_SCHOOL_INFO = 'CHANGE_MY_SCHOOL_INFO';
 
 
 // use when user input ID to log in
@@ -672,3 +682,85 @@ export const getMyInfo = () => {
     }).catch((err) => {dispatch(signinFailure('连接服务器失败，请稍后重试'));});
     }
 }
+export const changeMyBasicInfo = () => {
+    return {
+        type:CHANGE_MY_BASIC_INFO,
+    }
+}
+export const nicknameChange = (new_nickname) => {
+    return {
+        type:NICKNAME_CHANGE,
+        new_nickname:new_nickname,
+    }
+}
+// export const saveNewBasicInfo = () => {
+//     return (dispatch, getState) => {
+//         const body = {
+//             realname:getState().new_basicInfo.realname,
+//         }
+//         return fetch ('http://54.219.171.129/api/private/profile/basic', {
+//             method: 'put',
+//             headers: {
+//                 'Content-Type': 'application/json',
+//                 'Accept': 'application/json'
+//             }
+//         }).then(
+//             (res) => {
+//             return res.json()
+//             },
+//         (error) => {
+//             dispatch(signinFailure('连接服务器失败，请稍后重试'));
+//         }
+//     )
+//         }
+// };
+export const changeMyAdditionalInfo = () => {
+    return {
+        type:CHANGE_MY_ADDITIONAL_INFO,
+    }
+}
+export const changeMySurveyInfo = () => {
+    return {
+        type:CHANGE_MY_SURVEY_INFO,
+    }
+}
+export const changeMyTagsInfo = () => {
+    return {
+        type:CHANGE_MY_TAGS_INFO,
+    }
+}
+export const changeMySkills = () => {
+    return {
+        type:CHANGE_MY_SKILLS_INFO,
+    }
+}
+export const changeMySetting = () => {
+    return {
+        type:CHANGE_MY_SETTING_INFO,
+    }
+}
+export const addMyEmployerInfo = () => {
+    return{
+        type:ADD_MY_EMPLOYER_INFO,
+    }
+}
+export const addSchoolInfo = () => {
+    return{
+        type:ADD_MY_SCHOOL_INFO,
+    }
+}
+export const changeMyEmployerInfo = (item) => {
+    return{
+        type:CHANGE_MY_EMPLOYER_INFO
+    }
+}
+export const changeMySchoolInfo = (item) => {
+    return{
+        type:CHANGE_MY_SCHOOL_INFO
+    }
+}
+
+
+
+
+

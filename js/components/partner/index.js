@@ -30,8 +30,9 @@ class Partner extends Component {
       fontSize: 15,
       marginLeft: (Platform.OS === 'android') ? 150 : 40,
     },
-    headerLeft: <Button transparent onPress={() => navigation.navigate('DrawerOpen')}><Icon name="ios-options" style={styles.drawerIcon} /></Button>,
-    headerRight: <Button transparent onPress={() => navigation.navigate('Search')}><Icon name="ios-search" style={styles.searchIcon} /></Button>,
+    //headerRight: <Button transparent onPress={() => navigation.navigate('DrawerOpen')}><Icon name="ios-options" style={styles.drawerIcon} /></Button>,
+    headerRight: <Button transparent onPress={() => navigation.navigate('Notification')}><Icon name="ios-notifications" style={styles.drawerIcon} /></Button>,
+    headerLeft: <Button transparent onPress={() => navigation.navigate('Search')}><Icon name="ios-search" style={styles.searchIcon} /></Button>,
     //drawerLabel: '首页',
     drawerIcon: <Icon name="ios-home" style={{ color: '#218BC8'}} />,
     drawerStyle: {
@@ -86,12 +87,12 @@ class Partner extends Component {
             <Button
               onPress={() => this.props.navigation.navigate('Activity', {})}
               title="Go to Activity page">
-              <Icon name="ios-bicycle-outline" style={styles.footericon} />
+              <Icon name="ios-calendar-outline" style={styles.footericon} />
             </Button>
             <Button
             onPress={this.handleMyInfo}
             title="Go to Setup page">
-                <Icon name="ios-settings" style={styles.footericon} />
+                <Icon name="ios-settings-outline" style={styles.footericon} />
             </Button>
           </FooterTab>
         </Footer>

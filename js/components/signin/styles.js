@@ -7,7 +7,7 @@ const deviceHeight = Dimensions.get('window').height;
 
 export default {
   container: {
-    backgroundColor: '#fff',
+    backgroundColor: '#eaeff2',
   },
   logo:{
     // position: 'absolute',
@@ -26,8 +26,8 @@ export default {
     logo2:{
         marginTop: (Platform.OS === 'android') ? 20 : -60,
         alignSelf: 'center',
-        width: 120,
-        height: 40,
+        width: 220,
+        height: 80,
     },
     logobox: {
         marginTop: (Platform.OS === 'android') ? 100 : 80,
