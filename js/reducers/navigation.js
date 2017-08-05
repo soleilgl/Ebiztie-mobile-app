@@ -1,5 +1,5 @@
 import AppNavigator from '../AppNavigator';
-import { SIGNIN_SUCCESS, ACTIVATE_USER, SIGNUP_SUCCESS, REGISTER_AGREEMENT, PARTNER_DETAIL_PARTNER, GET_ALL_BUSINESS, GET_ALL_PROJECT, GET_BUSINESS_DETAIL_INFO, GET_PROJECT_DETAIL_INFO, SAVE_MY_INFO} from '../actions';
+import { SIGNIN_SUCCESS, ACTIVATE_USER, SIGNUP_SUCCESS, REGISTER_AGREEMENT, PARTNER_DETAIL_PARTNER, GET_ALL_BUSINESS, GET_ALL_PROJECT, GET_BUSINESS_DETAIL_INFO, GET_PROJECT_DETAIL_INFO, SAVE_MY_INFO, CHANGE_MY_BASIC_INFO, CHANGE_MY_ADDITIONAL_INFO, CHANGE_MY_SURVEY_INFO, CHANGE_MY_TAGS_INFO, CHANGE_MY_SKILLS_INFO, CHANGE_MY_SETTING_INFO, ADD_MY_EMPLOYER_INFO, ADD_MY_SCHOOL_INFO, CHANGE_MY_EMPLOYER_INFO, CHANGE_MY_SCHOOL_INFO} from '../actions';
 import { NavigationActions } from 'react-navigation';
 
 const initialState = AppNavigator.router.getStateForAction(AppNavigator.router.getActionForPathAndParams('Signin'));
@@ -47,9 +47,50 @@ const navReducer = (state = initialState, action) => {
           nextState = AppNavigator.router.getStateForAction(NavigationActions.navigate({ routeName: 'Setup' }),
               state);
       break;
+      case CHANGE_MY_BASIC_INFO:
+          nextState = AppNavigator.router.getStateForAction(NavigationActions.navigate({ routeName: 'BasicInfo' }),
+              state);
+      break;
+      case CHANGE_MY_ADDITIONAL_INFO:
+          nextState = AppNavigator.router.getStateForAction(NavigationActions.navigate({ routeName: 'AdditionalInfo' }),
+              state);
+      break;
+      case CHANGE_MY_SURVEY_INFO:
+          nextState = AppNavigator.router.getStateForAction(NavigationActions.navigate({ routeName: 'SurveyInfo' }),
+              state);
+      break;
+      case CHANGE_MY_TAGS_INFO:
+          nextState = AppNavigator.router.getStateForAction(NavigationActions.navigate({ routeName: 'TagsInfo' }),
+              state);
+      break;
+      case CHANGE_MY_SKILLS_INFO:
+          nextState = AppNavigator.router.getStateForAction(NavigationActions.navigate({ routeName: 'SkillsInfo' }),
+              state);
+      break;
+      case CHANGE_MY_SETTING_INFO:
+          nextState = AppNavigator.router.getStateForAction(NavigationActions.navigate({ routeName: 'SettingInfo' }),
+              state);
+      break;
+      case ADD_MY_EMPLOYER_INFO:
+          nextState = AppNavigator.router.getStateForAction(NavigationActions.navigate({ routeName: 'AddEmployerInfo' }),
+              state);
+      break;
+      case ADD_MY_SCHOOL_INFO:
+          nextState = AppNavigator.router.getStateForAction(NavigationActions.navigate({ routeName: 'AddSchoolInfo' }),
+              state);
+      break;
+      case CHANGE_MY_EMPLOYER_INFO:
+          nextState = AppNavigator.router.getStateForAction(NavigationActions.navigate({ routeName: 'ChangeEmployerInfo' }),
+              state);
+      break;
+      case CHANGE_MY_SCHOOL_INFO:
+          nextState = AppNavigator.router.getStateForAction(NavigationActions.navigate({ routeName: 'ChangeSchoolInfo' }),
+              state);
+          break;
+
       default:
-    nextState = AppNavigator.router.getStateForAction(action, state);
-    break;
+        nextState = AppNavigator.router.getStateForAction(action, state);
+        break;
   }
   return nextState || state;
 };

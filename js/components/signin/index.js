@@ -11,7 +11,7 @@ import { usernameInput, passwordInput, signin, LinkedinSignIn } from '../../acti
 
 const logo = require('../../../img/ebiztie_logo.png');
 const logo1 = require('../../../img/1.jpg');
-const logo2 = require('../../../img/2.jpg');
+const logo2 = require('../../../img/Ebiztie_touming.png');
 
 const wechat = require('../../../img/wechatimg.jpg');
 const facebook = require('../../../img/facebookimg.jpg');
@@ -48,9 +48,9 @@ class Signin extends Component {
         </Header>*/}
 
         <Content>
-          <View style={styles.logobox}>
+      {/*<View style={styles.logobox}>
           <Image source={logo1} style={styles.logo1} />
-          </View>
+          </View>*/}
       <View style={styles.logobox}>
   <Image source={logo2} style={styles.logo2} />
   </View>

@@ -41,6 +41,16 @@ import VIP from './components/VIP';
 import OfficialAccount from './components/official_account';
 import Business from './components/business';
 import Project from './components/project';
+import BasicInfo from './components/myInfo/basic';
+import AdditionalInfo from './components/myInfo/additional';
+import SurveyInfo from './components/myInfo/survey';
+import TagsInfo from './components/myInfo/tags';
+import SkillsInfo from './components/myInfo/skill';
+import SettingInfo from './components/myInfo/setting';
+import AddEmployerInfo from './components/myInfo/add_employer_info';
+import AddSchoolInfo from './components/myInfo/add_school_info';
+import ChangeEmployerInfo from './components/myInfo/change_employer_info';
+import ChangeSchoolInfo from './components/myInfo/change_school_info';
 
 const deviceHeight = Dimensions.get('window').height;
 const deviceWidth = Dimensions.get('window').width;
@@ -266,6 +276,36 @@ const HomeStack = StackNavigator({
   },
     Agreement: {
     screen: Agreement,
+    },
+    BasicInfo: {
+    screen: BasicInfo,
+    },
+    AdditionalInfo: {
+    screen: AdditionalInfo,
+    },
+    SurveyInfo: {
+    screen: SurveyInfo,
+    },
+    TagsInfo: {
+        screen: TagsInfo,
+    },
+    SkillsInfo: {
+        screen: SkillsInfo,
+    },
+    SettingInfo: {
+        screen: SettingInfo,
+    },
+    AddEmployerInfo: {
+    screen: AddEmployerInfo
+    },
+    AddSchoolInfo: {
+    screen: AddSchoolInfo
+    },
+    ChangeEmployerInfo: {
+    screen: ChangeEmployerInfo
+    },
+    ChangeSchoolInfo: {
+    screen: ChangeSchoolInfo
     },
 },
   { headerMode: 'screen' },
