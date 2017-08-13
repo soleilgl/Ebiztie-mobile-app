@@ -3,6 +3,8 @@ import { Image, Dimensions, View } from 'react-native';
 import { Container, Content, Button, Icon, Card, CardItem, Text, Right, Body } from 'native-base';
 import { connect } from 'react-redux';
 import { getMorePartnerInfo, getAllBusiness, getAllProject } from '../../actions';
+import I18n from '../../../i18n/i18n';
+import { getLanguages } from 'react-native-i18n'
 
 import styles from './styles';
 
@@ -15,7 +17,7 @@ const deviceWidth = Dimensions.get('window').width;
 class PartnerDetail extends Component { // eslint-disable-line
   static navigationOptions = {
     headerMode: 'none',
-    title: '返回',
+    title: '',
     headerTintColor: '#ffffff',
     headerStyle: {
       backgroundColor: '#218BC8',
@@ -58,60 +60,61 @@ class PartnerDetail extends Component { // eslint-disable-line
               </Body>
               </CardItem>
               <CardItem>
-              <Image source={level} style={{marginRight:10}}/>
+              <Image source={level} style={{marginRight:10, width:40, height:15}}/>
               <Icon name="ios-person" style={{ color: 'green', marginRight: -10}} />
 
-              <Button iconLeft transparent style={{marginRight: -10}}>
+              <Button small iconLeft transparent style={{marginRight: -10}}>
               <Icon active name="ios-checkmark-circle" />
               <Text>1900</Text>
               </Button>
 
-              <Button iconLeft transparent style={{marginLeft: -10}}>
+              <Button small iconLeft transparent style={{marginLeft: -10}}>
               <Icon active name="ios-checkmark-circle-outline" />
               <Text>5000</Text>
               </Button>
 
-              <Button style={{backgroundColor:'#218BC8'}}>
-                  <Text>加关注</Text>
+              <Button small style={{backgroundColor:'#218BC8'}}>
+                  <Text>{I18n.t('partner_follow')}</Text>
               </Button>
               </CardItem>
               </Card>
 
               <Card>
                   <CardItem header style={{backgroundColor:'#f5f5f5'}}>
-                  <Text>概况</Text>
+                  <Text>{I18n.t('partner_profile_title')}</Text>
                   </CardItem>
                   <CardItem style={{borderBottomWidth:1, borderColor:'#f5f5f5'}}>
                   <Body>
-                  <Text>昵称：<Text note>{nickname}</Text></Text>
-                  <Text>本人：<Text note>{partnerDemo}</Text></Text>
-                  <Text>工作经验：<Text note>{this.props.partnerDetailInfo.experience}</Text></Text>
-                  <Text>专长：<Text note>{this.props.partnerDetailInfo.occupation}</Text></Text>
-                  <Text>关心领域：<Text note></Text></Text>
+                  <Text>{I18n.t('nickname')}：{nickname}</Text>
+                  <Text>{I18n.t('partner_profile_about')}：{partnerDemo}</Text>
+                  <Text>{I18n.t('workingExperience')}：{this.props.partnerDetailInfo.experience}</Text>
+                  <Text>{I18n.t('occupation')}：{this.props.partnerDetailInfo.occupation}</Text>
+                  <Text>{I18n.t('businessDirection')}：{survey.direction}</Text>
                   </Body>
                   </CardItem>
                   <CardItem>
                   <Body>
-                  <Text>标签：<Text note>{this.props.partnerDetailInfo.tags}</Text></Text>
-                  <Text>现状态：<Text note>{this.props.partnerDetailInfo.currentRole}</Text></Text>
-                  <Text>原因：<Text note>{this.props.partnerDetailInfo.visitReason}</Text></Text>
-                  <Text>公司：<Text note>{this.props.partnerDetailInfo.company}</Text></Text>
-                  <Text>学校：<Text note>{this.props.partnerDetailInfo.schools}</Text></Text>
-                  <Text>雇主：<Text note>{this.props.partnerDetailInfo.employers}</Text></Text>
-                  <Text>行业：<Text note>{this.props.partnerDetailInfo.industry}</Text></Text>
-                  <Text>职位：<Text note>{this.props.partnerDetailInfo.occupation}</Text></Text>
-                  <Text>工作经验：<Text note>{this.props.partnerDetailInfo.experience}</Text></Text>
-                  <Text>技能：<Text note>{this.props.partnerDetailInfo.skills}</Text></Text>
-                  <Text>特长：<Text note>{this.props.partnerDetailInfo.specialty}</Text></Text>
-                  <Text>证书：<Text note>{this.props.partnerDetailInfo.certificate}</Text></Text>
-                  <Text>爱好：<Text note>{this.props.partnerDetailInfo.hobbies}</Text></Text>
+                  <Text>{I18n.t('visitReason')}：{this.props.partnerDetailInfo.visitReason}</Text>
+                  <Text>{I18n.t('currentRole')}：{this.props.partnerDetailInfo.currentRole}</Text>
+                  <Text>{I18n.t('occupation')}：{this.props.partnerDetailInfo.occupation}</Text>
+                  <Text>{I18n.t('companyName')}：{this.props.partnerDetailInfo.company}</Text>
+                  <Text>{I18n.t('industry')}：{this.props.partnerDetailInfo.industry}</Text>
+                  <Text>{I18n.t('workingExperience')}：{this.props.partnerDetailInfo.experience}</Text>
+                  <Text>{I18n.t('employers')}：{this.props.partnerDetailInfo.employers}</Text>
+                  <Text>{I18n.t('partner_profile_education')}：{this.props.partnerDetailInfo.schools}</Text>
+                  <Text>{I18n.t('tags')}：{this.props.partnerDetailInfo.tags}</Text>
+                  <Text>{I18n.t('partner_profile_certificates')}：{this.props.partnerDetailInfo.certificate}</Text>
+                  <Text>{I18n.t('hobbies')}：{this.props.partnerDetailInfo.hobbies}</Text>
+                  <Text>{I18n.t('friendDescribeMe')}：{this.props.partnerDetailInfo.characters}</Text>
+                  <Text>{I18n.t('specialities')}：{this.props.partnerDetailInfo.specialty}</Text>
+                  <Text>{I18n.t('skills')}：{this.props.partnerDetailInfo.skill}</Text>
                   </Body>
                   </CardItem>
               </Card>
 
               <Card>
               <CardItem header style={{backgroundColor:'#f5f5f5'}}>
-              <Text>简介</Text>
+              <Text>{I18n.t('partner_introduction_title')}</Text>
               </CardItem>
               <CardItem>
               <Body>
@@ -122,91 +125,91 @@ class PartnerDetail extends Component { // eslint-disable-line
 
               <Card>
               <CardItem header style={{backgroundColor:'#f5f5f5'}}>
-                <Text>问卷调查</Text>
+                <Text>{I18n.t('partner_survey_title')}</Text>
               </CardItem>
               <CardItem>
                 <Body>
-              <Text>情况：<Text note>{survey.currentSituation}</Text></Text>
-              <Text>定位：<Text note>{survey.myOrientation}</Text></Text>
-              <Text>企业经验：<Text note>{survey.entrepreneurExperience}</Text></Text>
-              <Text>空余时间：<Text note>{survey.availableTime}</Text></Text>
-              <Text>自筹资金：<Text note>{survey.selfFunding}</Text></Text>
-              <Text>方向：<Text note>{survey.direction}</Text></Text>
-              <Text>寻求地点：<Text note>{survey.desiredLocation}</Text></Text>
-              <Text>内涵：<Text note>{survey.innerQualities}</Text></Text>
-              <Text>确定投资：<Text note>{survey.establishedVentures}</Text></Text>
-              <Text>星级：<Text note>{survey.hasStarted}</Text></Text>
-              <Text>企业方式：<Text note>{survey.cooperationMethod}</Text></Text>
-              <Text>孵化器：<Text note>{survey.incubatorInfo}</Text></Text>
-              <Text>奖励方式：<Text note>{survey.compensationOption}</Text></Text>
+              <Text>{I18n.t('currentSituation')}：{survey.currentSituation}</Text>
+              <Text>{I18n.t('liketo')}：{survey.myOrientation}</Text>
+              <Text>{I18n.t('partner_survey_commit')}：{survey.cooperationMethod}</Text>
+              <Text>{I18n.t('entrepreneurExperience')}：{survey.entrepreneurExperience}</Text>
+              <Text>{I18n.t('availableTime')}：{survey.availableTime}</Text>
+              <Text>{I18n.t('incubationStatus')}：{survey.incubatorInfo}</Text>
+              <Text>{I18n.t('partner_survey_funding')}：{survey.selfFunding}</Text>
+              <Text>{I18n.t('businessDirection')}：{survey.direction}</Text>
+              <Text>{I18n.t('partner_survey_location')}：{survey.desiredLocation}</Text>
+              <Text>{I18n.t('partner_survey_lookfor')}：{survey.innerQualities}</Text>
+              {/*<Text>确定投资：{survey.establishedVentures}</Text>
+              <Text>星级：{survey.hasStarted}</Text>
+              <Text>奖励方式：{survey.compensationOption}</Text>*/}
               </Body>
               </CardItem>
               </Card>
 
               <Card>
               <CardItem header style={{backgroundColor:'#f5f5f5'}}>
-                <Text>商洽</Text>
+                <Text>{I18n.t('partner_business_title')}</Text>
               </CardItem>
               <CardItem style={{borderBottomWidth:1, borderColor:'#f5f5f5'}}>
                 <Body>
-              <Text>名称：<Text note>{business.name}</Text></Text>
-              <Text>类别：<Text note>{business.type}</Text></Text>
-              <Text>地点：<Text note>{business.location_full}</Text></Text>
-              <Text>创立时间：<Text note>{business.createYear}</Text></Text>
-              <Text>行业：<Text note>{business.industry}</Text></Text>
-              <Text>员工数：<Text note>{business.employeeRange}</Text></Text>
-              <Text>我的职位：<Text note>{business.myPosition}</Text></Text>
-              <Text>技术：<Text note>{business.technology}</Text></Text>
-              <Text>服务：<Text note>{business.service}</Text></Text>
-              <Text>投资行业：<Text note>{business.investIndustry}</Text></Text>
+              <Text>{I18n.t('partner_business_name')}：{business.name}</Text>
+              <Text>{I18n.t('businessType')}：{business.type}</Text>
+              <Text>{I18n.t('partner_business_location')}：{business.location_full}</Text>
+              <Text>{I18n.t('partner_business_time')}：{business.createYear}</Text>
+              <Text>{I18n.t('partner_business_sector')}：{business.industry}</Text>
+              <Text>{I18n.t('employeeNumber')}：{business.employeeRange}</Text>
+              <Text>{I18n.t('partner_business_position')}：{business.myPosition}</Text>
+              <Text>{I18n.t('partner_business_tech')}：{business.technology}</Text>
+              <Text>{I18n.t('partner_business_interest')}：{business.investIndustry}</Text>
+              <Text>{I18n.t('partner_business_application')}：{business.acceptApplication}</Text>
+              <Text>{I18n.t('partner_business_due')}：{business.applicationDueDt}</Text>
               </Body>
               </CardItem>
               <CardItem>
               <Body>
-              <Text>概况：<Text note>{business.summary}</Text></Text>
-              <Text>细节：<Text note>{business.detail}</Text></Text>
-              <Text>我的孵化器：<Text note>{business.myIncubator}</Text></Text>
-              <Text>孵化器名称：<Text note>{business.myIncubatorName}</Text></Text>
-              <Text>伙伴关系：<Text note>{business.partnerWithSME}</Text></Text>
-              <Text>访问原因：<Text note>{business.smeVisitPurpose}</Text></Text>
-              <Text>投资史：<Text note>{business.investHistory}</Text></Text>
-              <Text>接受申请：<Text note>{business.acceptApplication}</Text></Text>
-              <Text>申请截止：<Text note>{business.applicationDueDt}</Text></Text>
+              <Text>{I18n.t('partner_business_introduction')}：{business.summary}</Text>
+              <Text>{I18n.t('partner_business_more')}：{business.detail}</Text>
+              <Text>{I18n.t('partner_business_others')}：{business.service}</Text>
+              {/*<Text>我的孵化器：{business.myIncubator}</Text>
+              <Text>孵化器名称：{business.myIncubatorName}</Text>
+              <Text>伙伴关系：{business.partnerWithSME}</Text>
+              <Text>访问原因：{business.smeVisitPurpose}</Text>
+              <Text>投资史：{business.investHistory}</Text>*/}
               </Body>
               </CardItem>
               <CardItem footer style={{backgroundColor:'#f5f5f5'}}>
-              <Button onPress={this.handleAllBusiness}>
-              <Text>点击查看全部</Text>
+              <Button onPress={this.handleAllBusiness} style={{backgroundColor:'#218bc8'}}>
+              <Text>{I18n.t('partner_business_moreBusiness')}</Text>
               </Button>
               </CardItem>
               </Card>
              <Card>
               <CardItem header style={{backgroundColor:'#f5f5f5'}}>
-                <Text>项目</Text>
+                <Text>{I18n.t('partner_project_title')}</Text>
               </CardItem>
               <CardItem>
                 <Body>
-              <Text>名称：<Text note>{project.name}</Text></Text>
-              <Text>领域：<Text note>{project.project_fields}</Text></Text>
-              <Text>地区：<Text note>{project.location_full}</Text></Text>
-              <Text>已完成：<Text note>{project.project_finished}</Text></Text>
-              <Text>投资概况：<Text note>{project.project_funding}</Text></Text>
-              <Text>第一轮投资：<Text note>{project.funding_firstphase}</Text></Text>
-              <Text>第二轮投资：<Text note>{project.funding_secondphase}</Text></Text>
-              <Text>第三轮投资：<Text note>{project.funding_thirdphase}</Text></Text>
-              <Text>项目团队：<Text note>{project.project_team}</Text></Text>
-              <Text>项目定位：<Text note>{project.project_positions}</Text></Text>
-              <Text>项目合作：<Text note>{project.partner_cooperationoption}</Text></Text>
-              <Text>补偿条件：<Text note>{project.partner_compensationoption}</Text></Text>
-              <Text>合伙人评估：<Text note>{project.partner_quality}</Text></Text>
-              <Text>责任：<Text note>{project.partner_responsibility}</Text></Text>
-              <Text>项目描述：<Text note>{project.project_description}</Text></Text>
-
+              <Text>{I18n.t('partner_project_name')}：{project.name}</Text>
+              <Text>{I18n.t('partner_project_fields')}：{project.project_fields}</Text>
+              <Text>{I18n.t('partner_project_location')}：{project.location_full}</Text>
+              <Text>{I18n.t('milestone')}：{project.project_phase}</Text>
+              <Text>{I18n.t('partner_project_done')}：{project.project_finished}</Text>
+              <Text>{I18n.t('partner_project_funding')}：{project.project_funding}</Text>
+              <Text>{I18n.t('partner_project_funding1')}：{project.funding_firstphase}</Text>
+              <Text>{I18n.t('partner_project_funding2')}：{project.funding_secondphase}</Text>
+              <Text>{I18n.t('partner_project_funding3')}：{project.funding_thirdphase}</Text>
+              <Text>{I18n.t('partner_project_aboutTeam')}：{project.project_team}</Text>
+              <Text>{I18n.t('partner_project_teamsize')}：{project.teamNumber}</Text>
+              <Text>{I18n.t('partner_project_lookingfor')}：{project.project_positions}</Text>
+              <Text>{I18n.t('partner_project_quality')}：{project.partner_quality}</Text>
+              <Text>{I18n.t('partner_project_responsibility')}：{project.partner_responsibility}</Text>
+              <Text>{I18n.t('commitment')}：{project.partner_cooperationoption}</Text>
+              <Text>{I18n.t('partner_project_description')}：{project.project_description}</Text>
               </Body>
               </CardItem>
               <CardItem footer style={{backgroundColor:'#f5f5f5'}}>
-              <Button onPress={this.handleAllProject}>
-              <Text>点击查看全部</Text>
+              <Button onPress={this.handleAllProject} style={{backgroundColor:'#218bc8'}}>
+              <Text>{I18n.t('partner_project_moreProject')}</Text>
               </Button>
               </CardItem>
               </Card>
@@ -214,7 +217,7 @@ class PartnerDetail extends Component { // eslint-disable-line
 
               <Card>
               <CardItem header style={{backgroundColor:'#f5f5f5'}}>
-                <Text>故事</Text>
+                <Text>{I18n.t('partner_story_title')}</Text>
               </CardItem>
               <CardItem>
                 <Body>
@@ -223,26 +226,24 @@ class PartnerDetail extends Component { // eslint-disable-line
               </CardItem>
               </Card>
 
-          <Card style={{marginLeft:-20, marginBottom:30}}>
-            <CardItem>
+            <View style={styles.iconContainer}>
                 <Button transparent>
                   <Icon name="md-person-add" />
                 </Button>
                 <Button transparent>
                   <Icon name="ios-chatboxes" />
                 </Button>
-                <Button transparent>
+                {/*<Button transparent>
                   <Icon name="ios-thumbs-up" />
                   <Text>1,926</Text>
-                </Button>
+                </Button>*/}
                 <Button transparent>
                   <Icon name="md-arrow-forward" />
                 </Button>
                 <Button transparent>
                   <Icon name="md-create" />
                 </Button>
-            </CardItem>
-              </Card>
+              </View>
         </Content>
       </Container>
     );

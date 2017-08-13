@@ -20,7 +20,7 @@ const deviceWidth = Dimensions.get('window').width;
 
 class Partner extends Component {
   static navigationOptions = ({ navigation }) => ({
-    title: '首页',
+    title: '',
     headerTintColor: '#ffffff',
     headerStyle: {
       backgroundColor: '#218BC8',

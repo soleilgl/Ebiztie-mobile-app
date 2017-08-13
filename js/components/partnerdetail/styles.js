@@ -25,4 +25,11 @@ export default {
     color: '#DD5044',
     fontSize: 13,
   },
+  iconContainer: {
+      flexDirection: "row",
+      flexWrap: "wrap",
+      justifyContent: "space-around",
+      marginTop:20,
+      marginBottom:20,
+  },
 };

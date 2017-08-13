@@ -3,6 +3,9 @@ import { Image, Dimensions, View } from 'react-native';
 import { Container, Content, Button, Icon, Card, CardItem, Text, Right, Body,Thumbnail } from 'native-base';
 import { connect } from 'react-redux';
 
+import I18n from '../../../i18n/i18n';
+import { getLanguages } from 'react-native-i18n'
+
 import styles from './styles';
 
 
@@ -15,7 +18,7 @@ const deviceWidth = Dimensions.get('window').width;
 class ProjectDetail extends Component { // eslint-disable-line
   static navigationOptions = {
     headerMode: 'none',
-    title: '返回',
+    title: '',
     headerTintColor: '#ffffff',
     headerStyle: {
       backgroundColor: '#218BC8',
@@ -28,6 +31,14 @@ class ProjectDetail extends Component { // eslint-disable-line
   render() { // eslint-disable-line
       const projectIconURL =  this.props.projectDetailInfo.basicInfo.icon;
       const projectDetailInfo = this.props.projectDetailInfo;
+      console.log("key is" + I18n.t('investor_investor1')+ 'test');
+      console.log("value is " + projectDetailInfo.investor1);
+      let partnerWithSME
+      if (projectDetailInfo.partnerWithSME === true){
+          partnerWithSME = 'YES'
+      }else{
+          partnerWithSME = 'NO'
+      }
     return (
       <Container style={styles.container}>
         {/* <Header style={styles.header} >
@@ -40,145 +51,148 @@ class ProjectDetail extends Component { // eslint-disable-line
       <CardItem>
       <Thumbnail big style={{ marginLeft: 140}} source={{uri: projectIconURL}} />
     </CardItem>
-      <CardItem header style={{backgroundColor:'#eaeff2'}}>
-    <Text>概况</Text>
+      <CardItem header style={{backgroundColor:'#f5f5f5'}}>
+    <Text>{I18n.t('project_profile_title')}</Text>
       </CardItem>
       <CardItem style={{borderBottomWidth:1, borderColor:'#eaeff2'}}>
     <Body>
-      <Text>创建人：<Text note>{projectDetailInfo.createdBy}</Text></Text>
-      <Text>名称：<Text note>{projectDetailInfo.name}</Text></Text>
-      <Text>链接：<Text note>{projectDetailInfo.website_link}</Text></Text>
-      <Text>地点：<Text note>{projectDetailInfo.location_full}</Text></Text>
+      <Text>{I18n.t('project_profile_post')}：{projectDetailInfo.createdBy}</Text>
+      <Text>{I18n.t('project_profile_name')}：{projectDetailInfo.name}</Text>
+      <Text>{I18n.t('location')}：{projectDetailInfo.location_full}</Text>
+      <Text>{I18n.t('businessDirection')}：{projectDetailInfo.basicInfo.field}</Text>
+      <Text>{I18n.t('milestone')}：{projectDetailInfo.project_phase}</Text>
+      <Text>{I18n.t('project_profile_keywords')}：{projectDetailInfo.techTag}</Text>
+      <Text>{I18n.t('project_profile_partner')}：{partnerWithSME}</Text>
+      <Text>{I18n.t('project_profile_time')}：{projectDetailInfo.prepareTime}</Text>
+      <Text>{I18n.t('project_profile_link')}：{projectDetailInfo.website_link}</Text>
+
       </Body>
       </CardItem>
       </Card>
 
-      <Card>
-      <CardItem header style={{backgroundColor:'#eaeff2'}}>
-    <Text>简介</Text>
-      </CardItem>
-      <CardItem>
-      <Body>
-      <Text>{projectDetailInfo.project_description}</Text>
-      </Body>
-      </CardItem>
-      </Card>
-
-      <Card>
-      <CardItem header style={{backgroundColor:'#eaeff2'}}>
-    <Text>项目总结</Text>
-      </CardItem>
-      <CardItem>
-      <Body>
-      <Text>领域：<Text note>{projectDetailInfo.basicInfo.field}</Text></Text>
-      <Text>里程碑：<Text note>{projectDetailInfo.project_team}</Text></Text>
-      <Text>Technology Tags：<Text note>{projectDetailInfo.project_team}</Text></Text>
-      <Text>Time Invested in the Project：<Text note>{projectDetailInfo.prepareTime}</Text></Text>
-      <Text>What Have You Done For The Project So Far：<Text note>{projectDetailInfo.partner_cooperationoption}</Text></Text>
-      <Text>What Kind of Advantage Does the Project Have：<Text note>{projectDetailInfo.advantage}</Text></Text>
-      <Text>Are You Seeking to Partner With a SME For Your Innovation：<Text note>{projectDetailInfo.partnerWithSME}</Text></Text>
-      </Body>
-      </CardItem>
-      </Card>
-
-      <Card>
-      <CardItem header style={{backgroundColor:'#eaeff2'}}>
-    <Text>项目资金</Text>
-      </CardItem>
-      <CardItem>
-      <Body>
-      <Text>You are Raising Funds via：<Text note>{projectDetailInfo.project_funding}</Text></Text>
-      <Text>Raising as Equity in Current Round：<Text note>{projectDetailInfo.currentFundingAmount}</Text></Text>
-      </Body>
-      </CardItem>
-      </Card>
-
-      <Card>
-      <CardItem header style={{backgroundColor:'#eaeff2'}}>
-  <Text>已拿到投资（$）</Text>
-      </CardItem>
-      <CardItem>
-      <Body>
-      <Text>Self-Raised fund：<Text note>{projectDetailInfo.selfRaised_fund}</Text></Text>
-      <Text>Crowdfunding：<Text note>{projectDetailInfo.crowd_fund}</Text></Text>
-      <Text>Angle/Private Equity：<Text note>{projectDetailInfo.angelPrivate_fund}</Text></Text>
-      <Text>Venture Capital：<Text note>{projectDetailInfo.ventureCapital_fund}</Text></Text>
-      <Text>First Round：<Text note>{projectDetailInfo.funding_firstphase}</Text></Text>
-      <Text>Second Round：<Text note>{projectDetailInfo.funding_secondphase}</Text></Text>
-      <Text>Third Round：<Text note>{projectDetailInfo.funding_thirdphase}</Text></Text>
-      </Body>
-      </CardItem>
-      </Card>
-
-      <Card>
-      <CardItem header style={{backgroundColor:'#eaeff2'}}>
-  <Text>项目团队</Text>
-      </CardItem>
-      <CardItem>
-      <Body>
-      <Text>团队规模：<Text note>{projectDetailInfo.teamNumber}</Text></Text>
-      <Text>关于团队：<Text note>{projectDetailInfo.aboutTeam}</Text></Text>
-      <Text>创始人 1：<Text note>{projectDetailInfo.founder1}</Text></Text>
-      <Text>创始人 2：<Text note>{projectDetailInfo.founder2}</Text></Text>
-      <Text>创始人 3：<Text note>{projectDetailInfo.founder3}</Text></Text>
-      <Text>创始人 4：<Text note>{projectDetailInfo.founder4}</Text></Text>
-      <Text>Types of Talents We Look Forward to Recruit or Partner：<Text note>{projectDetailInfo.project_positions}</Text></Text>
-      <Text>Responsibilities of Team Members / Partners：<Text note>{projectDetailInfo.partner_responsibility}</Text></Text>
-      <Text>Expected Vital Qualities of The Team Members / Partners：<Text note>{projectDetailInfo.partner_quality}</Text></Text>
-      <Text>Team Member Committment：<Text note>{projectDetailInfo.project_team}</Text></Text>
-      <Text>奖励制度：<Text note>{projectDetailInfo.partner_compensationoption}</Text></Text>
-      </Body>
-      </CardItem>
-      </Card>
-
-      <Card>
-      <CardItem header style={{backgroundColor:'#eaeff2'}}>
-    <Text>孵化器／投资（$）</Text>
-      </CardItem>
-      <CardItem>
-      <Body>
-      <Text>Incubator Status：<Text note>{projectDetailInfo.myIncubator}</Text></Text>
-      <Text>Name of Incubator：<Text note>{projectDetailInfo.myIncubatorName}</Text></Text>
-      <Text>投资人：</Text>
-      <Text>投资人1：<Text note>{projectDetailInfo.investor1}</Text></Text>
-      <Text>投资人2：<Text note>{projectDetailInfo.investor2}</Text></Text>
-      <Text>投资人3：<Text note>{projectDetailInfo.investor3}</Text></Text>
-      <Text>投资人4：<Text note>{projectDetailInfo.investor4}</Text></Text>
-      <Text>Board member：</Text>
-      <Text>Member 1：<Text note>{projectDetailInfo.broadMember1}</Text></Text>
-      <Text>Member 2：<Text note>{projectDetailInfo.broadMember2}</Text></Text>
-      <Text>Member 3：<Text note>{projectDetailInfo.broadMember3}</Text></Text>
-      <Text>Member 4：<Text note>{projectDetailInfo.broadMember4}</Text></Text>
-      <Text>Advisors：</Text>
-      <Text>Advisor 1：<Text note>{projectDetailInfo.advisor1}</Text></Text>
-      <Text>Advisor 2：<Text note>{projectDetailInfo.advisor2}</Text></Text>
-      <Text>Advisor 3：<Text note>{projectDetailInfo.advisor3}</Text></Text>
-      <Text>Advisor 4：<Text note>{projectDetailInfo.advisor4}</Text></Text>
-      </Body>
-      </CardItem>
-      </Card>
-
-
-      <Card style={{marginBottom:30}}>
+    <Card>
+    <CardItem header style={{backgroundColor:'#f5f5f5'}}>
+    <Text>{I18n.t('project_profile_description')}</Text>
+    </CardItem>
     <CardItem>
-      <Button transparent>
-      <Icon name="md-person-add" />
-          </Button>
-          <Button transparent>
-      <Icon name="ios-chatboxes" />
-          </Button>
-          <Button transparent>
-      <Icon name="ios-thumbs-up" />
-          <Text>1,926</Text>
-      </Button>
-      <Button transparent>
-      <Icon name="md-arrow-forward" />
-          </Button>
-          <Button transparent>
-      <Icon name="md-create" />
-          </Button>
-          </CardItem>
-          </Card>
+    <Body>
+    <Text>{projectDetailInfo.project_description}</Text>
+    </Body>
+    </CardItem>
+    </Card>
+
+    <Card>
+    <CardItem header style={{backgroundColor:'#f5f5f5'}}>
+    <Text>{I18n.t('project_profile_advantages')}</Text>
+    </CardItem>
+    <CardItem>
+    <Body>
+    <Text>{projectDetailInfo.advantage}</Text>
+    </Body>
+    </CardItem>
+    </Card>
+
+    <Card>
+    <CardItem header style={{backgroundColor:'#f5f5f5'}}>
+    <Text>{I18n.t('project_profile_done')}</Text>
+    </CardItem>
+    <CardItem>
+    <Body>
+    <Text>{projectDetailInfo.project_finished}</Text>
+    </Body>
+    </CardItem>
+    </Card>
+
+      <Card>
+      <CardItem header style={{backgroundColor:'#f5f5f5'}}>
+      <Text>{I18n.t('project_funding_title')}</Text>
+      </CardItem>
+      <CardItem>
+      <Body>
+      <Text>{I18n.t('project_funding_ways')}：{projectDetailInfo.project_funding}</Text>
+      <Text>{I18n.t('project_funding_round')}：{projectDetailInfo.currentFundingAmount}</Text>
+      <Text style={{marginTop:10}}>{I18n.t('project_funding_closed')}：</Text>
+      <Text>{I18n.t('project_funding_ventureCapital')}：{projectDetailInfo.ventureCapital_fund}</Text>
+      <Text>{I18n.t('project_funding_crowdFund')}：{projectDetailInfo.crowd_fund}</Text>
+      <Text>{I18n.t('project_funding_angel')}：{projectDetailInfo.angelPrivate_fund}</Text>
+      <Text>{I18n.t('project_funding_selfRaised')}：{projectDetailInfo.selfRaised_fund}</Text>
+      <Text>{I18n.t('funding_1round')}：{projectDetailInfo.funding_firstphase}</Text>
+      <Text>{I18n.t('funding_2round')}：{projectDetailInfo.funding_secondphase}</Text>
+      <Text>{I18n.t('funding_3round')}：{projectDetailInfo.funding_thirdphase}</Text>
+      </Body>
+      </CardItem>
+      </Card>
+
+      <Card>
+      <CardItem header style={{backgroundColor:'#f5f5f5'}}>
+      <Text>{I18n.t('project_team_title')}</Text>
+      </CardItem>
+      <CardItem>
+      <Body>
+      <Text>{I18n.t('project_team_teamSize')}：{projectDetailInfo.teamNumber}</Text>
+      <Text>{I18n.t('project_team_founders')}：{projectDetailInfo.founder1}</Text>
+      <Text>{I18n.t('project_team_partnerTypes')}：{projectDetailInfo.project_positions}</Text>
+      <Text>{I18n.t('project_team_responsibilities')}：{projectDetailInfo.partner_responsibility}</Text>
+      <Text>{I18n.t('project_team_qualities')}：{projectDetailInfo.partner_quality}</Text>
+      <Text>{I18n.t('commitment')}：{projectDetailInfo.partner_compensationoption}</Text>
+      </Body>
+      </CardItem>
+      </Card>
+
+
+    <Card>
+    <CardItem header style={{backgroundColor:'#f5f5f5'}}>
+    <Text>{I18n.t('project_incubator_title')}</Text>
+    </CardItem>
+    <CardItem>
+    <Body>
+    <Text>{I18n.t('project_incubator_status')}：{projectDetailInfo.myIncubator}</Text>
+    <Text>{I18n.t('project_incubator_name')}：{projectDetailInfo.myIncubatorName}</Text>
+    </Body>
+    </CardItem>
+    </Card>
+
+
+
+      <Card>
+      <CardItem header style={{backgroundColor:'#f5f5f5'}}>
+    <Text>{I18n.t('project_investor_title')},{I18n.t('project_boardMembers_title')}</Text>
+      </CardItem>
+      <CardItem>
+      <Body>
+      <Text>{I18n.t('project_investor_title')}</Text>
+      <Text>{I18n.t('investor_investor1')}：{projectDetailInfo.investor1}</Text>
+      <Text>{I18n.t('investor_investor2')}：{projectDetailInfo.investor2}</Text>
+      <Text>{I18n.t('investor_investor3')}：{projectDetailInfo.investor3}</Text>
+      <Text>{I18n.t('investor_investor4')}：{projectDetailInfo.investor4}</Text>
+      <Text style={{marginTop:10}}>{I18n.t('project_boardMembers_title')}：</Text>
+      <Text>{I18n.t('boardMembers_member1')}：{projectDetailInfo.broadMember1}</Text>
+      <Text>{I18n.t('boardMembers_member2')}：{projectDetailInfo.broadMember2}</Text>
+      <Text>{I18n.t('boardMembers_member3')}：{projectDetailInfo.broadMember3}</Text>
+      <Text>{I18n.t('boardMembers_member4')}：{projectDetailInfo.broadMember4}</Text>
+      </Body>
+      </CardItem>
+      </Card>
+
+          <View style={styles.iconContainer}>
+            <Button transparent>
+              <Icon name="md-person-add" />
+            </Button>
+            <Button transparent>
+              <Icon name="ios-chatboxes" />
+            </Button>
+              {/*<Button transparent>
+               <Icon name="ios-thumbs-up" />
+               <Text>1,926</Text>
+               </Button>*/}
+            <Button transparent>
+              <Icon name="md-arrow-forward" />
+            </Button>
+            <Button transparent>
+              <Icon name="md-create" />
+            </Button>
+          </View>
+
         </Content>
       </Container>
     );

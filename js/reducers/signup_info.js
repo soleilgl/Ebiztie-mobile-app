@@ -9,7 +9,7 @@ const initialState = {
     password1: '',
     password2: '',
     realname: '',
-    role: '企业家',
+    role: '1',
     situation: '1',
     visitReason: '1',
 };

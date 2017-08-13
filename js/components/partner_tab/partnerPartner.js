@@ -3,8 +3,9 @@ import { List, ListItem, Body, Text, Thumbnail, Card, Spinner } from 'native-bas
 import { TouchableOpacity, ScrollView, FlatList } from 'react-native';
 import { connect } from 'react-redux';
 import { getAllPartnersInfo, getPartnerInfo } from '../../actions';
+import I18n from '../../../i18n/i18n';
+import { getLanguages } from 'react-native-i18n'
 
-//const Hao = require('../../../img/home/Hao.png');
 
 class PartnerPartner extends Component { // eslint-disable-line
   static navigationOptions = {
@@ -35,8 +36,8 @@ renderItem = ({ item }) => {
             </TouchableOpacity>
             <Body>
             <Text>{item.nickname}</Text>
-            <Text numberOfLines={1} ellipsizeMode ={'tail'}>简介：<Text note>{item.summaryDemo}</Text></Text>
-            <Text numberOfLines={3} ellipsizeMode ={'tail'}>概况：<Text note>{item.summaryBio}</Text></Text>
+            <Text numberOfLines={1} ellipsizeMode ={'tail'}>{I18n.t('partner_tab_basic')}：{item.summaryDemo}</Text>
+            <Text numberOfLines={5} ellipsizeMode ={'tail'}>{I18n.t('partner_tab_intro')}：{item.summaryBio}</Text>
             </Body>
         </ListItem>
         </Card>

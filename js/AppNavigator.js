@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import { StyleProvider, variables, Drawer, Icon } from 'native-base';
 import {StackNavigator, TabNavigator, tabBarOptions, CardStackStyleInterpolator, DrawerNavigator, DrawerItems } from 'react-navigation';
 
+
 import Home from './components/home/';
 import Signin from './components/signin/';
 import Signup from './components/signup/';

@@ -3,6 +3,9 @@ import { Container, Content, Header, Item, Title, Card, CardItem, Button, Icon, 
 import { View, ScrollView, Dimensions, TouchableOpacity } from 'react-native';
 import { connect } from 'react-redux';
 import ImagePicker from 'react-native-image-picker';
+
+import I18n from '../../../i18n/i18n';
+import { getLanguages } from 'react-native-i18n'
 import styles from './styles';
 
 import { Home } from '../../AppNavigator';
@@ -112,68 +115,68 @@ class Setup extends Component {
         <TouchableOpacity onPress={this.handleImageUpload}>
         <Thumbnail size={80} source={{uri: this.props.avatarSource}} style={{ alignSelf: 'center', marginTop: 20, marginBottom: 10 }} />
         </TouchableOpacity>
-        <Text style={{fontSize:10, alignSelf:'center'}}>点击更换头像</Text>
+        <Text style={{fontSize:10, alignSelf:'center'}}>{I18n.t('changeImage')}</Text>
         </View>
         <Content padder>
       <Card>
       <CardItem header style={{backgroundColor:'#f5f5f5'}}>
       <Icon name="md-person" style={{ color: '#218bcb' }} />
-      <Text>个人信息</Text>
+      <Text>{I18n.t('setup_basicInfo_title')}</Text>
           <Button transparent style={{marginLeft:180}}>
       <Icon name="md-create" style={{ color: '#218bcb' }} onPress={this.handleChangeMyBasicInfo}/>
           </Button>
       </CardItem>
       <CardItem>
       <Body>
-      <Text>nickname:<Text note>{myInfo.nickname}</Text></Text>
-      <Text>realname:<Text note>{myInfo.realname}</Text></Text>
-      <Text>gender:<Text note>{myInfo.sex}</Text></Text>
-      <Text>age range:<Text note>{myInfo.agerange}</Text></Text>
-      <Text>location:<Text note>{myInfo.location_full}</Text></Text>
-      <Text>Preferred Contact Method:<Text note>{myInfo.preferredContact}</Text></Text>
-      <Text>introduction:<Text note>{myInfo.introduction}</Text></Text>
+      <Text>昵称:{myInfo.nickname}</Text>
+      <Text>{I18n.t('realname')}:{myInfo.realname}</Text>
+      <Text>{I18n.t('gender')}:{myInfo.sex}</Text>
+      <Text>{I18n.t('age')}:{myInfo.agerange}</Text>
+      <Text>{I18n.t('location')}:{myInfo.location_full}</Text>
+      <Text>{I18n.t('contactMethod')}:{myInfo.preferredContact}</Text>
+      <Text>{I18n.t('setup_basicInfo_introduction')}:{myInfo.introduction}</Text>
       </Body>
       </CardItem>
       <CardItem footer style={{backgroundColor:'#f5f5f5'}}>
       <Icon name="ios-information-circle" style={{ color: '#DD5044' }} />
-      <Text>下面信息不对外公开</Text>
+      <Text>{I18n.t('setup_hiddenInfo_title')}</Text>
       </CardItem>
       <CardItem>
       <Body>
-      <Text>email:<Text note>{myInfo.email}</Text></Text>
-      <Text>cellphone:<Text note>{myInfo.phone}</Text></Text>
-      <Text>Facebook:<Text note>{myInfo.facebook}</Text></Text>
-      <Text>Linkedin:<Text note>{myInfo.linkedin}</Text></Text>
-      <Text>Twitter:<Text note>{myInfo.twitter}</Text></Text>
-      <Text>WeChat:<Text note>{myInfo.wechat}</Text></Text>
+      <Text>{I18n.t('email')}:{myInfo.email}</Text>
+      <Text>{I18n.t('cellphone')}:{myInfo.phone}</Text>
+      <Text>{I18n.t('facebook')}:{myInfo.facebook}</Text>
+      <Text>{I18n.t('linkedin')}:{myInfo.linkedin}</Text>
+      <Text>{I18n.t('twitter')}:{myInfo.twitter}</Text>
+      <Text>{I18n.t('weChat')}:{myInfo.wechat}</Text>
       </Body>
       </CardItem>
       </Card>
       <Card>
       <CardItem header style={{backgroundColor:'#f5f5f5'}}>
       <Icon name="ios-ionitron" style={{ color: '#218bcb' }} />
-      <Text>其他信息</Text>
+      <Text>{I18n.t('setup_additionalInfo_title')}</Text>
       <Button transparent style={{marginLeft:180}}>
       <Icon name="md-create" style={{ color: '#218bcb' }} onPress={this.handleChangeMyAdditionalInfo}/>
       </Button>
       </CardItem>
       <CardItem>
       <Body>
-      <Text>The Reason I Am Here Is:<Text note>{myAdditionalInfo.visitReason}</Text></Text>
-      <Text>My Word Selfie:<Text note>{myAdditionalInfo.currentRole}</Text></Text>
-      <Text>My Current Occupation:<Text note>{myAdditionalInfo.occupation}</Text></Text>
-      <Text>Company Name:<Text note>{myAdditionalInfo.company}</Text></Text>
-      <Text>My Industry:<Text note>{myAdditionalInfo.industry}</Text></Text>
-      <Text>Years of Major Work Exp:<Text note>{myAdditionalInfo.yearOfExperience}</Text></Text>
-      <Text>My Hobbies:<Text note>{myAdditionalInfo.hobbies}</Text></Text>
-      <Text>A Friend Would Describe Me as:<Text note>{myAdditionalInfo.characters}</Text></Text>
+      <Text>{I18n.t('visitReason')}:{myAdditionalInfo.visitReason}</Text>
+      <Text>{I18n.t('setup_additionalInfo_selfie')}:{myAdditionalInfo.currentRole}</Text>
+      <Text>{I18n.t('occupation')}:{myAdditionalInfo.occupation}</Text>
+      <Text>{I18n.t('companyName')}:{myAdditionalInfo.company}</Text>
+      <Text>{I18n.t('industry')}:{myAdditionalInfo.industry}</Text>
+      <Text>{I18n.t('workingExperience')}:{myAdditionalInfo.yearOfExperience}</Text>
+      <Text>{I18n.t('hobbies')}:{myAdditionalInfo.hobbies}</Text>
+      <Text>{I18n.t('friendDescribeMe')}:{myAdditionalInfo.characters}</Text>
       </Body>
       </CardItem>
       </Card>
       <Card>
       <CardItem style={{backgroundColor:'#f5f5f5'}}>
       <Icon name="md-laptop" style={{ color: '#218bcb' }} />
-      <Text>Well-known Employers</Text>
+      <Text>{I18n.t('employers')}</Text>
       <Button transparent style={{marginLeft:80}}>
       <Icon name="md-add" style={{ color: '#218bcb' }} onPress={this.handleAddMyEmployerInfo}/>
       </Button>
@@ -181,9 +184,9 @@ class Setup extends Component {
       {myAdditionalInfo.Employers.map((item, index) =>
       (<CardItem key={index}>
         <Body>
-        <Text>公司名称：<Text note>{item.name_cn}</Text></Text>
-        <Text>开始时间：<Text note>{item.user_employer.start_date}</Text></Text>
-        <Text>结束时间：<Text note>{item.user_employer.end_date}</Text></Text>
+        <Text>{I18n.t('employerName')}：{item.name_cn}</Text>
+        <Text>{I18n.t('from')}：{item.user_employer.start_date}</Text>
+        <Text>{I18n.t('to')}：{item.user_employer.end_date}</Text>
         </Body>
       <Button transparent>
       <Icon name="md-create" style={{ color: '#218bcb' }} onPress={this.handleChangeMyEmployerInfo.bind(this,item)}/>
@@ -196,7 +199,7 @@ class Setup extends Component {
       <Card>
       <CardItem style={{backgroundColor:'#f5f5f5'}}>
       <Icon name="md-school" style={{ color: '#218bcb' }} />
-      <Text>School(s) Attended</Text>
+      <Text>{I18n.t('setup_schoolsInfo_title')}</Text>
       <Button transparent style={{marginLeft:100}}>
       <Icon name="md-add" style={{ color: '#218bcb' }} onPress={this.handleAddMySchoolInfo}/>
       </Button>
@@ -204,9 +207,9 @@ class Setup extends Component {
       {myAdditionalInfo.Schools.map((item, index) =>
       (<CardItem key={index}>
         <Body>
-      <Text>学校名称：<Text note>{item.name_cn}</Text></Text>
-      <Text>开始时间：<Text note>{item.user_school.start_date}</Text></Text>
-      <Text>结束时间：<Text note>{item.user_school.end_date}</Text></Text>
+      <Text>{I18n.t('schoolName')}：{item.name_cn}</Text>
+      <Text>{I18n.t('from')}：{item.user_school.start_date}</Text>
+      <Text>{I18n.t('to')}：{item.user_school.end_date}</Text>
         </Body>
       <Button transparent>
       <Icon name="md-create" style={{ color: '#218bcb' }} onPress={this.handleChangeMySchoolInfo.bind(this,item)}/>
@@ -220,26 +223,26 @@ class Setup extends Component {
       <Card>
       <CardItem header style={{backgroundColor:'#f5f5f5'}}>
       <Icon name="ios-paper" style={{ color: '#218bcb' }} />
-      <Text>问卷调查</Text>
+      <Text>{I18n.t('setup_surveyInfo_title')}</Text>
       <Button transparent style={{marginLeft:180}}>
       <Icon name="md-create" style={{ color: '#218bcb' }} onPress={this.handleChangeMySurvey}/>
       </Button>
       </CardItem>
       <CardItem>
       <Body>
-      <Text>My Current Situation:<Text note>{mySurvey.currentSituation}</Text></Text>
-      <Text>I Would Like to:<Text note>{mySurvey.myOrientation}</Text></Text>
-      <Text>If I Join a team, I Commit to:<Text note>{mySurvey.cooperationMethod}</Text></Text>
-      <Text>If I Join a Team, the Type of Reward I Expect to Get is:<Text note>{mySurvey.compensationOption}</Text></Text>
-      <Text>Entrepreneur Experience:<Text note>{mySurvey.entrepreneurialExperience}</Text></Text>
-      <Text>My Available Time:<Text note>{mySurvey.availableTime}</Text></Text>
-      <Text>Incubation Status:<Text note>{mySurvey.incubatorInfo}</Text></Text>
-      <Text>Name of Incubator(if any):<Text note></Text></Text>
-      <Text>About Funding:<Text note>{mySurvey.selfFunding}</Text></Text>
-      <Text>My Business Direction:<Text note>{mySurvey.businessDirection}</Text></Text>
-      <Text>My Preferred Location:<Text note>{mySurvey.businessLocation}</Text></Text>
-      <Text>Qualities That I'm Looking for in My Business Partners:<Text note>{mySurvey.innerQualities}</Text></Text>
-      <Text>My Successfully Established Business Ventures (if any):<Text note>{mySurvey.selfFunding}</Text></Text>
+      <Text>{I18n.t('currentSituation')}:{mySurvey.currentSituation}</Text>
+      <Text>{I18n.t('liketo')}:{mySurvey.myOrientation}</Text>
+      <Text>{I18n.t('commitment')}:{mySurvey.cooperationMethod}</Text>
+      <Text>{I18n.t('reward')}:{mySurvey.compensationOption}</Text>
+      <Text>{I18n.t('entrepreneurExperience')}:{mySurvey.entrepreneurialExperience}</Text>
+      <Text>{I18n.t('availableTime')}:{mySurvey.availableTime}</Text>
+      <Text>{I18n.t('incubationStatus')}:{mySurvey.incubatorInfo}</Text>
+      <Text>{I18n.t('incubatorName')}:</Text>
+      <Text>{I18n.t('partner_survey_funding')}:{mySurvey.selfFunding}</Text>
+      <Text>{I18n.t('businessDirection')}:{mySurvey.businessDirection}</Text>
+      <Text>{I18n.t('partner_survey_location')}:{mySurvey.businessLocation}</Text>
+      <Text>{I18n.t('partner_survey_lookfor')}:{mySurvey.innerQualities}</Text>
+      <Text>{I18n.t('partner_survey_myBusinessVentures')}:{mySurvey.selfFunding}</Text>
       </Body>
       </CardItem>
       </Card>
@@ -247,31 +250,31 @@ class Setup extends Component {
       <Card>
       <CardItem header style={{backgroundColor:'#f5f5f5'}}>
       <Icon name="ios-pricetags" style={{ color: '#218bcb' }} />
-      <Text>我的标签</Text>
+      <Text>{I18n.t('tags')}</Text>
       <Button transparent style={{marginLeft:180}}>
       <Icon name="md-create" style={{ color: '#218bcb' }} onPress={this.handleChangeMyTags}/>
       </Button>
       </CardItem>
       <CardItem>
       <Body>
-      <Text>My Tags:<Text note>{myTags.tags}</Text></Text>
+      <Text>{I18n.t('tags')}:{myTags.tags}</Text>
       </Body>
       </CardItem>
       </Card>
       <Card>
       <CardItem header style={{backgroundColor:'#f5f5f5'}}>
       <Icon name="ios-build" style={{ color: '#218bcb' }} />
-      <Text>我的专长</Text>
+      <Text>{I18n.t('setup_skillInfo_title')}</Text>
       <Button transparent style={{marginLeft:180}}>
       <Icon name="md-create" style={{ color: '#218bcb' }} onPress={this.handleChangeMySkills}/>
       </Button>
       </CardItem>
       <CardItem>
       <Body>
-      <Text>My Specialties:<Text note>{mySkills.specialty}</Text></Text>
-      <Text>My skills:<Text note>{mySkills.skill}</Text></Text>
-      <Text>My Patents:<Text note>{mySkills.patent}</Text></Text>
-      <Text>My Professional Certificates and Awards:<Text note>{mySkills.certificate}</Text></Text>
+      <Text>{I18n.t('specialities')}:{mySkills.specialty}</Text>
+      <Text>{I18n.t('skills')}:{mySkills.skill}</Text>
+      <Text>{I18n.t('patents')}:{mySkills.patent}</Text>
+      <Text>{I18n.t('certificates')}{mySkills.certificate}</Text>
       </Body>
       </CardItem>
       </Card>
@@ -279,40 +282,40 @@ class Setup extends Component {
       <Card>
       <CardItem header style={{backgroundColor:'#f5f5f5'}}>
       <Icon name="ios-options" style={{ color: '#218bcb' }} />
-      <Text>我的设置</Text>
+      <Text>{I18n.t('setup_setting_title')}</Text>
       <Button transparent style={{marginLeft:180}}>
       <Icon name="md-create" style={{ color: '#218bcb' }} onPress={this.handleChangeMySetting}/>
       </Button>
       </CardItem>
       <CardItem>
       <Body>
-      <Text>旧密码:<Text note></Text></Text>
-      <Text>新密码:<Text note></Text></Text>
-      <Text>确认密码:<Text note></Text></Text>
+      <Text>{I18n.t('oldPassword')}:</Text>
+      <Text>{I18n.t('newPassword')}:</Text>
+      <Text>{I18n.t('confirmPassword')}:</Text>
       </Body>
       </CardItem>
       <CardItem style={{backgroundColor:'#f5f5f5'}}>
-      <Text>联系方式</Text>
+      <Text>{I18n.t('contactMethod')}</Text>
       </CardItem>
       <CardItem>
       <Body>
-      <Text>允许联系方式:<Text note></Text></Text>
+      <Text></Text>
       </Body>
       </CardItem>
       <CardItem style={{backgroundColor:'#f5f5f5'}}>
-      <Text>暂停／停止使用账户</Text>
+      <Text>{I18n.t('setup_pauseAccount')}</Text>
       </CardItem>
       <CardItem>
       <Body>
-      <Text>允许联系方式:<Text note></Text></Text>
+      <Text></Text>
       </Body>
       </CardItem>
       <CardItem style={{backgroundColor:'#f5f5f5'}}>
-      <Text>语言设定</Text>
+      <Text>{I18n.t('language')}</Text>
       </CardItem>
       <CardItem>
       <Body>
-      <Text>中文／英文:<Text note></Text></Text>
+      <Text></Text>
       </Body>
       </CardItem>
       </Card>
@@ -320,38 +323,38 @@ class Setup extends Component {
       <Card>
       <CardItem header style={{backgroundColor:'#f5f5f5'}}>
       <Icon name="ios-star" style={{ color: '#218bcb' }} />
-      <Text>VIP用户</Text>
+      <Text>{I18n.t('setup_VIPSubscription_title')}</Text>
       <Button transparent style={{marginLeft:180}}>
       <Icon name="md-create" style={{ color: '#218bcb' }} />
       </Button>
       </CardItem>
       <CardItem>
       <Body>
-      <Text>vip:<Text note></Text></Text>
+      <Text></Text>
       </Body>
       </CardItem>
         </Card>
 
       <Card style={styles.mb}>
       <CardItem header style={{backgroundColor:'#f5f5f5'}}>
-      <Text>查看更多</Text>
+      <Text>{I18n.t('more')}</Text>
       </CardItem>
       <CardItem style={{alignSelf: 'center'}}>
           <Button transparent>
       <Icon name="ios-list-box" style={{ color: '#00ced1' }} />
-      <Text>故事</Text>
+      <Text>{I18n.t('setup_storyInfo_title')}</Text>
       </Button>
       </CardItem>
       <CardItem style={{alignSelf: 'center'}}>
       <Button transparent>
         <Icon name="ios-briefcase" style={{ color: '#3B579D' }} />
-        <Text>商务</Text>
+        <Text>{I18n.t('setup_businessInfo_title')}</Text>
       </Button>
       </CardItem>
       <CardItem style={{alignSelf: 'center'}}>
       <Button transparent>
         <Icon name="logo-buffer" style={{ color: '#3B579D' }} />
-        <Text>项目</Text>
+        <Text>{I18n.t('setup_projectInfo_title')}</Text>
       </Button>
       </CardItem>
       <CardItem style={{alignSelf: 'center'}}>

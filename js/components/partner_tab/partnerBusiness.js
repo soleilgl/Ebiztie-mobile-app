@@ -3,6 +3,8 @@ import { List, ListItem, Text, Body, Thumbnail, Card } from 'native-base';
 import { TouchableOpacity, ScrollView, FlatList } from 'react-native';
 import { connect } from 'react-redux';
 import { getAllBusinessInfo, getBusinessInfo } from '../../actions';
+import I18n from '../../../i18n/i18n';
+import { getLanguages } from 'react-native-i18n'
 
 const bizimg = require('../../../img/discoverlogo.jpg');
 
@@ -29,10 +31,10 @@ renderItem = ({ item }) => {
         <Thumbnail square size={80} source={{uri: item.icon}} />
         </TouchableOpacity>
         <Body>
-        <Text>名称：<Text note>{item.name}</Text></Text>
-        <Text>行业：<Text note>{item.industry}</Text></Text>
-        <Text>地点：<Text note>{item.location}</Text></Text>
-        <Text numberOfLines={5} ellipsizeMode ={'tail'}>概要：<Text note>{item.summary}</Text></Text>
+        <Text>{I18n.t('business_tab_name')}：{item.name}</Text>
+        <Text>{I18n.t('industry')}：{item.industry}</Text>
+        <Text>{I18n.t('location')}：{item.location}</Text>
+        <Text numberOfLines={5} ellipsizeMode ={'tail'}>{I18n.t('summary')}：{item.summary}</Text>
         </Body>
         </ListItem>
     </Card>

@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import { Container, Content, Header, Title, Card, CardItem, Button, Icon, Text, Footer, FooterTab, List, ListItem,Thumbnail, Spinner, Body } from 'native-base';
 import { View, ScrollView, Dimensions, TouchableOpacity } from 'react-native';
 import { connect } from 'react-redux';
+import I18n from '../../../i18n/i18n';
+import { getLanguages } from 'react-native-i18n'
+
 import styles from './styles';
 
 import { Home } from '../../AppNavigator';
@@ -12,7 +15,7 @@ const deviceHeight = Dimensions.get('window').height;
 class project extends Component {
     static navigationOptions = {
         headerMode: 'none',
-        title: '返回',
+        title: '',
         headerTintColor: '#ffffff',
         headerStyle: {
             backgroundColor: '#218BC8',
@@ -35,27 +38,28 @@ class project extends Component {
             </CardItem>
             <CardItem style={{borderBottomWidth:1, borderColor:'#f5f5f5'}}>
             <Body>
-            <Text>领域：<Text note>{item.project_fields}</Text></Text>
-            <Text>地区：<Text note>{item.location_full}</Text></Text>
-            <Text>已完成：<Text note>{item.project_finished}</Text></Text>
-            <Text>投资概况：<Text note>{item.project_funding}</Text></Text>
-            <Text>第一轮投资：<Text note>{item.funding_firstphase}</Text></Text>
-            <Text>第二轮投资：<Text note>{item.funding_secondphase}</Text></Text>
-            <Text>第三轮投资：<Text note>{item.funding_thirdphase}</Text></Text>
-            <Text>项目团队：<Text note>{item.project_team}</Text></Text>
-            <Text>项目定位：<Text note>{item.project_positions}</Text></Text>
-            <Text>项目合作：<Text note>{item.partner_cooperationoption}</Text></Text>
-            <Text>补偿条件：<Text note>{item.partner_compensationoption}</Text></Text>
-            <Text>合伙人评估：<Text note>{item.partner_quality}</Text></Text>
-            <Text>责任：<Text note>{item.partner_responsibility}</Text></Text>
-            <Text>项目描述：<Text note>{item.project_description}</Text></Text>
+            <Text>{I18n.t('partner_project_fields')}：{item.project_fields}</Text>
+            <Text>{I18n.t('partner_project_location')}：{item.location_full}</Text>
+            <Text>{I18n.t('milestone')}：{item.project_phase}</Text>
+            <Text>{I18n.t('partner_project_done')}：{item.project_finished}</Text>
+            <Text>{I18n.t('partner_project_funding')}：{item.project_funding}</Text>
+            <Text>{I18n.t('partner_project_funding1')}：{item.funding_firstphase}</Text>
+            <Text>{I18n.t('partner_project_funding2')}：{item.funding_secondphase}</Text>
+            <Text>{I18n.t('partner_project_funding3')}：{item.funding_thirdphase}</Text>
+            <Text>{I18n.t('partner_project_aboutTeam')}：{item.project_team}</Text>
+            <Text>{I18n.t('partner_project_teamsize')}：{project.teamNumber}</Text>
+            <Text>{I18n.t('partner_project_lookingfor')}：{item.project_positions}</Text>
+            <Text>{I18n.t('partner_project_quality')}：{item.partner_quality}</Text>
+            <Text>{I18n.t('partner_project_responsibility')}：{item.partner_responsibility}</Text>
+            <Text>{I18n.t('commitment')}：{item.partner_cooperationoption}</Text>
+            <Text>{I18n.t('partner_project_description')}：{item.project_description}</Text>
             </Body>
             </CardItem>
             </Card>))}
         </Content>
         )
         }else{
-            return (<Content padder><Text>暂无内容</Text></Content>);
+            return (<Content padder><Text>{I18n.t('partner_noContents')}</Text></Content>);
         }
     }
 }
