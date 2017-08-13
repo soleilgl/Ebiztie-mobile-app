@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import { Image, Dimensions, View } from 'react-native';
 import { Container, Content, Button, Icon, Card, CardItem, Text, Right, Body, Thumbnail } from 'native-base';
 import { connect } from 'react-redux';
+
+import I18n from '../../../i18n/i18n';
+import { getLanguages } from 'react-native-i18n'
 import styles from './styles';
 
 
@@ -14,7 +17,7 @@ const deviceWidth = Dimensions.get('window').width;
 class BusinessDetail extends Component { // eslint-disable-line
   static navigationOptions = {
     headerMode: 'none',
-    title: '返回',
+    title: '',
     headerTintColor: '#ffffff',
     headerStyle: {
       backgroundColor: '#218BC8',
@@ -54,25 +57,27 @@ class BusinessDetail extends Component { // eslint-disable-line
       <Thumbnail big style={{ marginLeft: 140}} source={{uri: businessIconURL}} />
       </CardItem>
       <CardItem header style={{backgroundColor:'#f5f5f5'}}>
-      <Text>概况</Text>
+      <Text>{I18n.t('business_profile_title')}</Text>
       </CardItem>
       <CardItem style={{borderBottomWidth:1, borderColor:'#f5f5f5'}}>
       <Body>
-      <Text>名称：<Text note>{businessDetailInfo.name}</Text></Text>
-      <Text>类型：<Text note>{businessDetailInfo.basicInfo.type}</Text></Text>
-      <Text>地点：<Text note>{businessDetailInfo.basicInfo.location}</Text></Text>
-      <Text>创建年限：<Text note>{businessDetailInfo.createYear}</Text></Text>
-      <Text>领域：<Text note>{businessDetailInfo.industry}</Text></Text>
-      <Text>员工数：<Text note>{businessDetailInfo.employeeRange}</Text></Text>
-      <Text>年收入：<Text note>{businessDetailInfo.annualIncome}</Text></Text>
-      <Text>会员现状：<Text note>{businessDetailInfo.myPosition}</Text></Text>
+      <Text>{I18n.t('business_profile_name')}：{businessDetailInfo.name}</Text>
+      <Text>{I18n.t('business_profile_post')}：</Text>
+      <Text>{I18n.t('businessType')}：{businessDetailInfo.basicInfo.type}</Text>
+      <Text>{I18n.t('business_profile_location')}：{businessDetailInfo.basicInfo.location}</Text>
+      <Text>{I18n.t('business_profile_established')}：{businessDetailInfo.createYear}</Text>
+      <Text>{I18n.t('business_profile_sector')}：{businessDetailInfo.industry}</Text>
+      <Text>{I18n.t('employeeNumber')}：{businessDetailInfo.employeeRange}</Text>
+      <Text>{I18n.t('business_profile_income')}：{businessDetailInfo.annualIncome}</Text>
+      <Text>{I18n.t('business_profile_position')}：{businessDetailInfo.myPosition}</Text>
+      <Text>{I18n.t('business_profile_technology')}：{businessDetailInfo.technology}</Text>
       </Body>
       </CardItem>
       </Card>
 
       <Card>
       <CardItem header style={{backgroundColor:'#f5f5f5'}}>
-      <Text>简介</Text>
+      <Text>{I18n.t('business_summary_title')}</Text>
       </CardItem>
       <CardItem>
       <Body>
@@ -83,48 +88,45 @@ class BusinessDetail extends Component { // eslint-disable-line
 
       <Card>
       <CardItem header style={{backgroundColor:'#f5f5f5'}}>
-      <Text>细节</Text>
+      <Text>{I18n.t('business_details_title')}</Text>
       </CardItem>
       <CardItem>
       <Body>
-      <Text>细节：<Text note>{businessDetailInfo.detail}</Text></Text>
+      <Text>{businessDetailInfo.detail}</Text>
       </Body>
       </CardItem>
       </Card>
 
       <Card>
       <CardItem header style={{backgroundColor:'#f5f5f5'}}>
-      <Text>产品，细节及程序</Text>
+      <Text>{I18n.t('business_others_title')}</Text>
       </CardItem>
       <CardItem>
       <Body>
-      <Text>技术：<Text note>{businessDetailInfo.technology}</Text></Text>
-      <Text>服务：<Text note>{businessDetailInfo.service}</Text></Text>
+      <Text>{businessDetailInfo.service}</Text>
       </Body>
       </CardItem>
       </Card>
 
 
-      <Card style={{marginBottom:30}}>
-      <CardItem>
-      <Button transparent>
-      <Icon name="md-person-add" />
+        <View style={styles.iconContainer}>
+          <Button transparent>
+            <Icon name="md-person-add" />
           </Button>
           <Button transparent>
-      <Icon name="ios-chatboxes" />
+            <Icon name="ios-chatboxes" />
+          </Button>
+            {/*<Button transparent>
+             <Icon name="ios-thumbs-up" />
+             <Text>1,926</Text>
+             </Button>*/}
+          <Button transparent>
+            <Icon name="md-arrow-forward" />
           </Button>
           <Button transparent>
-      <Icon name="ios-thumbs-up" />
-          <Text>1,926</Text>
-      </Button>
-      <Button transparent>
-      <Icon name="md-arrow-forward" />
+            <Icon name="md-create" />
           </Button>
-          <Button transparent>
-      <Icon name="md-create" />
-          </Button>
-          </CardItem>
-          </Card>
+        </View>
           </Content>
 
       </Container>

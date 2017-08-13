@@ -5,6 +5,8 @@ import { actions } from 'react-native-navigation-redux-helpers';
 import { Container, Header, Icon, Content, Button, Input, InputGroup, Text, Thumbnail } from 'native-base';
 import { connect } from 'react-redux';
 import { NavigationActions } from 'react-navigation';
+import I18n from '../../../i18n/i18n';
+import { getLanguages } from 'react-native-i18n'
 
 import styles from './styles';
 import { usernameInput, passwordInput, signin, LinkedinSignIn } from '../../actions';
@@ -57,11 +59,11 @@ class Signin extends Component {
           <View style={styles.loginbox}>
             <InputGroup rounded style={{ marginBottom: 30 }}>
               <Icon name="md-person" style={{ color: '#0A69FE' }} />
-              <Input placeholder="邮箱地址" type="text" ref="username" value={this.props.username} onChange={this.handleUernameInput} />
+              <Input placeholder={I18n.t('email')} type="text" ref="username" value={this.props.username} onChange={this.handleUernameInput} />
             </InputGroup>
             <InputGroup rounded>
               <Icon name="ios-unlock" style={{ color: '#0A69FE' }} />
-              <Input placeholder="密码" secureTextEntry type="password" ref="password" value={this.props.password} onChange={this.handlePasswordInput} />
+              <Input placeholder={I18n.t('password')} secureTextEntry type="password" ref="password" value={this.props.password} onChange={this.handlePasswordInput} />
             </InputGroup>
           </View>
 
@@ -85,17 +87,17 @@ class Signin extends Component {
 
           <View style={styles.buttonbox} >
             <Button block style={styles.signinbtn} onPress={() => this.props.dispatch(signin())} title="Go to Partnership page" >
-              <Text style={{ fontSize: 15 }} >登陆</Text>
+              <Text style={{ fontSize: 15 }} >{I18n.t('signin_signin')}</Text>
             </Button>
             <Button block style={styles.signupbtn} onPress={() => this.props.navigation.navigate('Signup', {})} title="Go to Signup page" >
-              <Text style={{ color: 'black', fontSize: 15 }} >注册</Text>
+              <Text style={{ color: 'black', fontSize: 15 }} >{I18n.t('signin_signup')}</Text>
             </Button>
           </View>
           <View style={styles.messagebox}>
           <Text style={styles.messagebody}>{this.props.message}</Text>
           </View>
           <View>
-          <Text style={styles.findpwbtn}>忘记密码？</Text>
+          <Text style={styles.findpwbtn}>{I18n.t('signin_forget')}？</Text>
           </View>
         </Content>
       </Container>

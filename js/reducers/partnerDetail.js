@@ -12,6 +12,7 @@ const initialState = {};
 //     occupation: occupation,
 //     experience: experience,
 //     specialty: specialty,
+//     characters:
 //     skill: skill,
 //     //patent: patent,
 //     certificate: certificate,

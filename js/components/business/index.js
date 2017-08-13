@@ -2,6 +2,10 @@ import React, { Component } from 'react';
 import { Container, Content, Header, Title, Card, CardItem, Button, Icon, Text, Footer, FooterTab, List, ListItem,Thumbnail, Spinner, Body } from 'native-base';
 import { View, ScrollView, Dimensions, TouchableOpacity } from 'react-native';
 import { connect } from 'react-redux';
+
+import I18n from '../../../i18n/i18n';
+import { getLanguages } from 'react-native-i18n'
+
 import styles from './styles';
 
 import { Home } from '../../AppNavigator';
@@ -12,7 +16,7 @@ const deviceHeight = Dimensions.get('window').height;
 class business extends Component {
     static navigationOptions = {
         headerMode: 'none',
-        title: '返回',
+        title: '',
         headerTintColor: '#ffffff',
         headerStyle: {
             backgroundColor: '#218BC8',
@@ -35,35 +39,37 @@ class business extends Component {
             </CardItem>
             <CardItem style={{borderBottomWidth:1, borderColor:'#f5f5f5'}}>
             <Body>
-            <Text>类别：<Text note>{item.type}</Text></Text>
-            <Text>地点：<Text note>{item.location_full}</Text></Text>
-            <Text>创立时间：<Text note>{item.createYear}</Text></Text>
-            <Text>行业：<Text note>{item.industry}</Text></Text>
-            <Text>员工数：<Text note>{item.employeeRange}</Text></Text>
-            <Text>我的职位：<Text note>{item.myPosition}</Text></Text>
-            <Text>技术：<Text note>{item.technology}</Text></Text>
-            <Text>服务：<Text note>{item.service}</Text></Text>
-            <Text>投资行业：<Text note>{item.investIndustry}</Text></Text>
+            <Text>{I18n.t('businessType')}：{item.type}</Text>
+            <Text>{I18n.t('partner_business_location')}：{item.location_full}</Text>
+            <Text>{I18n.t('partner_business_time')}：{item.createYear}</Text>
+            <Text>{I18n.t('partner_business_sector')}：{item.industry}</Text>
+            <Text>{I18n.t('employeeNumber')}：{item.employeeRange}</Text>
+            <Text>{I18n.t('partner_business_position')}：{item.myPosition}</Text>
+            <Text>{I18n.t('partner_business_tech')}：{item.technology}</Text>
+            <Text>{I18n.t('partner_business_interest')}：{item.investIndustry}</Text>
+            <Text>{I18n.t('partner_business_application')}：{item.acceptApplication}</Text>
+            <Text>{I18n.t('partner_business_due')}：{item.applicationDueDt}</Text>
             </Body>
             </CardItem>
             <CardItem>
             <Body>
-            <Text>概况：<Text note>{item.summary}</Text></Text>
-            <Text>细节：<Text note>{item.detail}</Text></Text>
-            <Text>我的孵化器：<Text note>{item.myIncubator}</Text></Text>
-            <Text>孵化器名称：<Text note>{item.myIncubatorName}</Text></Text>
-            <Text>伙伴关系：<Text note>{item.partnerWithSME}</Text></Text>
-            <Text>访问原因：<Text note>{item.smeVisitPurpose}</Text></Text>
-            <Text>投资史：<Text note>{item.investHistory}</Text></Text>
-            <Text>接受申请：<Text note>{item.acceptApplication}</Text></Text>
-            <Text>申请截止：<Text note>{item.applicationDueDt}</Text></Text>
+            <Text>{I18n.t('partner_business_introduction')}：{item.summary}</Text>
+            <Text>{I18n.t('partner_business_more')}：{item.detail}</Text>
+            <Text>{I18n.t('partner_business_others')}：{item.service}</Text>
+            {/*<Text>我的孵化器：{item.myIncubator}</Text>
+            <Text>孵化器名称：{item.myIncubatorName}</Text>
+            <Text>伙伴关系：{item.partnerWithSME}</Text>
+            <Text>访问原因：{item.smeVisitPurpose}</Text>
+            <Text>投资史：{item.investHistory}</Text>*/}
+
+
             </Body>
             </CardItem>
             </Card>))}
             </Content>
         )
         }else{
-            return (<Content padder><Text>暂无内容</Text></Content>);
+            return (<Content padder><Text>{I18n.t('partner_noContents')}</Text></Content>);
         }
     }
 }
