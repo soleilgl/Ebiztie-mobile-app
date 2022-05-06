@@ -1,5 +1,5 @@
 
-import { USERNAME_INPUT } from '../actions'
+import { USERNAME_INPUT } from '../actions';
 
 const initialState = '';
 export default function username(state = initialState, action) {
